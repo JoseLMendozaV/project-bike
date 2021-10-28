@@ -7,11 +7,6 @@ import { LocalStorageItem } from '../storage/local-storage.js';
 import { idb } from '../storage/idb.js';
 import { uuid } from '../storage/uuid.js';
 
-import { workouts as workoutsFile }  from '../workouts/workouts.js';
-import { zwo } from '../workouts/zwo.js';
-import { fileHandler } from '../file.js';
-import { activity } from '../fit/activity.js';
-import { fit } from '../fit/fit.js';
 
 class Model {
     constructor(args) {
@@ -331,34 +326,11 @@ class Workout extends Model {
     postInit(args) {
         const self = this;
     }
-    defaultValue() { return this.parse((first(workoutsFile))); }
     defaultIsValid(value) {
         return exists(value);
     }
     restore(db) {
         return first(db.workouts);
-    }
-    async readFromFile(workoutFile) {
-        const workout = await fileHandler.readTextFile(workoutFile);
-        return workout;
-    }
-    parse(workout) {
-        return zwo.parse(workout);
-    }
-    fileName () {
-        const self = this;
-        const now = new Date();
-        return `workout-${dateToDashString(now)}.fit`;
-    }
-    encode(db) {
-        const fitjsActivity = activity.encode({records: db.records, laps: db.laps});
-        console.log(fitjsActivity);
-        return fit.activity.encode(fitjsActivity);
-    }
-    download(activity) {
-        const self = this;
-        const blob = new Blob([activity], {type: 'application/octet-stream'});
-        fileHandler.saveFile()(blob, self.fileName());
     }
     save(db) {
         const self = this;
@@ -374,10 +346,6 @@ class Workouts extends Model {
     postInit(args) {
         const self = this;
         console.log(self.defaultValue());
-    }
-    defaultValue() {
-        const self = this;
-        return workoutsFile.map((w) => Object.assign(self.workoutModel.parse(w), {id: uuid()}));
     }
     defaultIsValid(value) {
         const self = this;

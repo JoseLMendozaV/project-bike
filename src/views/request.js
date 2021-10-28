@@ -1,6 +1,6 @@
 import { xf, empty, last } from '../functions.js';
 import { models } from '../models/models.js';
-import { utils } from '../ant/message.js';
+import { utils } from '../ble/message.js';
 
 class Request extends HTMLElement {
     constructor() {

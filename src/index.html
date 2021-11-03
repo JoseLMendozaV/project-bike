@@ -31,7 +31,7 @@
                                        effect="sources"
                                        path="power"
                                        value="ble:power-meter">
-                            <h2 class="data-tile--heading">Power1</h2>
+                            <h2 class="data-tile--heading">Power</h2>
                             <div class="data-tile--value-cont">
                                 <data-display id="power-meter-power"
                                               class="info-cell-value"
@@ -40,38 +40,42 @@
                         </source-switch>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile--heading">Interval Time</h2>
-                            <div class="data-tile--value-cont">
-                                <time-display id="interval-time"
-                                              class="data-tile--value"
-                                              form="mm:ss"
-                                              prop="lapTime">--:--</time-display>
+                            <h2 class="data-tile-small--heading">Speed</h2>
+                            <div class="data-tile-small--value-cont">
+                                <speed-display id="speed-value"
+                                              class="data-tile-small--value"
+                                              prop="speed">
+                                    <value>--</value>
+                                    <unit class="data-tile-small--unit"></unit>
+                                </speed-display>
                             </div>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile--heading">Elapsed Time</h2>
-                            <div class="data-tile--value-cont">
-                                <time-display id="elapsed-time"
-                                              class="data-tile--value"
-                                              form="hh:mm:ss"
-                                              prop="elapsed">--:--:--</time-display>
+                            <h2 class="data-tile-small--heading">Distance</h2>
+                            <div class="data-tile-small--value-cont">
+                                <distance-display id="distance-value"
+                                                  class="data-tile-small--value"
+                                                  prop="distance">
+                                    <value>--</value>
+                                    <unit class="data-tile-small--unit"></unit>
+                                </distance-display>
                             </div>
                         </div>
                     </div>
                     <div class="line"></div>
-                    <div class="data-tile">
-                        <source-switch class="source-switch"
-                                       effect="sources"
-                                       path="power"
-                                       value="ble:power-meter2">
-                            <h2 class="data-tile--heading">Power2</h2>
-                            <div class="data-tile--value-cont">
-                                <data-display id="power-meter-power"
-                                              class="info-cell-value"
-                                              prop="power">--</data-display>
-                            </div>
-                        </source-switch>
+
+                    <div class="data-tiles cf">
+                        <div class="data-tile">
+                            <h2 class="data-tile-small--heading">Light bulb</h2>
+                            <meter min="0" max="100" low="25" high="75" optimum="100" value="ble:power-meter"></meter>
+
+                        </div>
+
+
                     </div>
+
+                    
+
 
                     
             </div> <!-- end page-home -->
@@ -86,7 +90,7 @@
                     <div class="settings-card-cont">
                         <connection-switch id="switch-power-meter" class="switch-connection switch" name="ble:power-meter">
                             <div class="switch--indicator off"></div>
-                            <div class="switch--label">Static Bike 1</div>
+                            <div class="switch--label">Static Bike</div>
                         </connection-switch>
                         <div class="device-info">
                             <div class="protocol-switch">
@@ -116,42 +120,6 @@
                     </div>
                 </div> <!-- end power-meter settings -->
 
-
-                <!-- power-meter 2 settings -->
-                <div class="settings-card row-border">
-                    <div class="settings-card-cont">
-                        <connection-switch id="switch-power-meter" class="switch-connection switch" name="ble:power-meter2">
-                            <div class="switch--indicator off"></div>
-                            <div class="switch--label">Static Bike 2 (developing...)</div>
-                        </connection-switch>
-                        <div class="device-info">
-                            <div class="protocol-switch">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                                    <path d="M0 0h24v24H0V0z" fill="none"/>
-                                    <path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/>
-                                </svg>
-                            </div>
-                            <div class="info-cell">
-                                <h3 class="">Name</h3>
-                                <effect-display id="controllable-name"
-                                                class="info-cell-value"
-                                                effect="ble:power-meter2:name">--</effect-display>
-                            </div>
-                            <div class="info-cell">
-                                <source-switch class="source-switch"
-                                               effect="sources"
-                                               path="power"
-                                               value="ble:power-meter2">
-                                    <h3 class="">Power</h3>
-                                    <data-display id="power-meter-power"
-                                                  class="info-cell-value"
-                                                  prop="power">--</data-display>
-                                </source-switch>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- end power-meter settings -->
-
 <!-- for next, project details--> <!--
                 <div id="about">
                     <div class="row">
@@ -167,53 +135,7 @@
             </page-group>
 
             <div class="fixed-bottom">
-                <div class="controls">
-                    <watch-control id="watch" class="watch cf">
-                        <div id="workout-name">
-                            <data-display prop="workout" path="name">Energy Bike Research Project</data-display>
-                        </div>
-                        <div id="start-workout" class="control--btn">
-                        </div>
-                        <div id="watch-start" class="control--btn">
-                            <svg class="control--btn--icon" xmlns="http://www.w3.org/2000/svg"
-                                    height="24" viewBox="0 0 24 24" width="24">
-                                <path d="M0 0h24v24H0V0z" fill="none"/>
-                                <path d="M8 5v14l11-7L8 5z"/>
-                            </svg>
-                        </div>
-
-                        <div id="watch-pause" class="control--btn">
-                            <svg class="control--btn--icon" xmlns="http://www.w3.org/2000/svg"
-                                    height="24" viewBox="0 0 24 24" width="24">
-                                <path d="M0 0h24v24H0V0z" fill="none"/>
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                            </svg>
-                        </div>
-
-                        <div id="watch-lap" class="control--btn">
-                            <svg class="control--btn--icon" xmlns="http://www.w3.org/2000/svg"
-                                    height="24" viewBox="0 0 24 24" width="24">
-                                <path d="M0 0h24v24H0V0z" fill="none"/>
-                                <path d="M15 1H9v2h6V1zm-4
-                                            13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42
-                                            1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03
-                                            9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7
-                                            7-7 7 3.13 7 7-3.13 7-7 7z"/>
-                        </div>
-
-                        <div id="watch-stop" class="control--btn">
-                            <svg class="control--btn--icon" xmlns="http://www.w3.org/2000/svg"
-                                    height="24" viewBox="0 0 24 24" width="24">
-                                <path d="M0 0h24v24H0V0z" fill="none"/>
-                                <path d="M6 6h12v12H6V6z"/>
-                            </svg>
-                        </div>
-
-                        <div id="activity-save" class="control--btn">
-                        </div>
-                    </watch-control>
-                </div> <!-- end controls -->
-
+                <div class="line"></div>
                 <div id="menu" class="menu">
                     <div class="page-btn-group menu--row">
                         <page-btn id="settings-tab-btn"

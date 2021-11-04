@@ -63,7 +63,6 @@
                         </div>
                     </div>
                     <div class="line"></div>
-
                     <div class="data-tiles cf">
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Light bulb</h2>
@@ -114,6 +113,31 @@
                                     <data-display id="power-meter-power"
                                                   class="info-cell-value"
                                                   prop="power">--</data-display>
+                                </source-switch>
+                            </div>
+                            <div class="info-cell">
+                                <source-switch class="source-switch"
+                                               effect="sources"
+                                               path="cadence"
+                                               value="ble:power-meter">
+                                    <h3 class="">Cadence</h3>
+                                    <data-display id="power-meter-cadence"
+                                                  class="info-cell-value"
+                                                  prop="cadence">--</data-display>
+                                </source-switch>
+                            </div>
+                            <div class="info-cell">
+                                <source-switch class="source-switch"
+                                               effect="sources"
+                                               path="speed"
+                                               value="ble:power-meter">
+                                    <h3 class="">Speed</h3>
+                                    <speed-display id="power-meter-speed"
+                                                   class="info-cell-value"
+                                                   prop="speed">
+                                        <value>--</value>
+                                        <unit class="data-tile-small--unit"></unit>
+                                    </speed-display>
                                 </source-switch>
                             </div>
                         </div>

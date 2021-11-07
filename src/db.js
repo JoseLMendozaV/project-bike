@@ -7,7 +7,7 @@ let db = {
     heartRate: models.heartRate.default,
     cadence: models.cadence.default,
     speed: models.speed.default,
-    distance: 0,
+    distance: models.distance.default,
     sources: models.sources.default,
 
     // Targets
@@ -36,20 +36,6 @@ let db = {
     gpsData: [],
     gps: false,
 
-    // Watch
-    elapsed: 0,
-    lapTime: 0,
-    stepTime: 0,
-    intervalIndex: 0,
-    stepIndex: 0,
-    intervalDuration: 0,
-    stepDuration: 0,
-    watchStatus: 'stopped',
-    workoutStatus: 'stopped',
-
-    // Request ANT+ Device
-    antSearchList: [],
-    antDeviceId: {},
 };
 
 xf.create(db);
@@ -69,6 +55,10 @@ xf.reg(models.cadence.prop, (cadence, db) => {
 
 xf.reg(models.speed.prop, (speed, db) => {
     db.speed = speed;
+});
+
+xf.reg(models.distance.prop, (distance, db) => {
+    db.distance = distance;
 });
 
 xf.reg(models.sources.prop, (sources, db) => {
@@ -180,25 +170,6 @@ xf.reg('lock:release', (e, db) => {
     models.session.backup(db);
 });
 
-// Request ANT+ Device
-xf.reg('ui:ant:request:selected', (x, db) => {
-    db.antDeviceId = db.antSearchList.filter(d => {
-        return d.deviceNumber === parseInt(x);
-    })[0];
-});
-function includesDevice(devices, id) {
-    return devices.filter(d => d.deviceNumber === id.deviceNumber).length > 0;
-}
-xf.reg(`ant:search:device-found`, (x, db) => {
-    if(includesDevice(db.antSearchList, x)) return;
-    db.antSearchList.push(x);
-    db.antSearchList = db.antSearchList;
-});
-xf.reg(`ant:search:stopped`, (x, db) => {
-    db.antSearchList = [];
-});
-
-//
 xf.reg('app:start', async function(_, db) {
 
     db.ftp = models.ftp.restore();

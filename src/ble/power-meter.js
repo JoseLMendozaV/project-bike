@@ -46,6 +46,7 @@ function onPowerData(data) {
     if(exists(data.power)   && models.sources.isSource('power', self.id))   xf.dispatch('power', data.power);
     if(exists(data.cadence) && models.sources.isSource('cadence', self.id)) xf.dispatch('cadence', data.cadence);
     if(exists(data.speed)   && models.sources.isSource('speed', self.id))   xf.dispatch('speed', data.speed);
+    if(exists(data.distance)   && models.sources.isSource('distance', self.id))   xf.dispatch('distance', data.distance);
     if(exists(data.offsetIndicator)) xf.dispatch(`${self.id}:offsetIndicator`, data.offsetIndicator);
     // console.log(data);
 }

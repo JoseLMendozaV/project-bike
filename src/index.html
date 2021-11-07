@@ -42,36 +42,48 @@
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Speed</h2>
                             <div class="data-tile-small--value-cont">
-                                <speed-display id="speed-value"
+                                <data-display id="speed-value"
                                               class="data-tile-small--value"
                                               prop="speed">
                                     <value>--</value>
                                     <unit class="data-tile-small--unit"></unit>
-                                </speed-display>
+                                </data-display>
                             </div>
                         </div>
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Distance</h2>
                             <div class="data-tile-small--value-cont">
-                                <distance-display id="distance-value"
+                                <data-display id="distance-value"
                                                   class="data-tile-small--value"
                                                   prop="distance">
                                     <value>--</value>
                                     <unit class="data-tile-small--unit"></unit>
-                                </distance-display>
+                                </data-display>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="line"></div>
                     <div class="data-tiles cf">
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Light bulb</h2>
-                            <meter min="0" max="100" low="25" high="75" optimum="100" value="ble:power-meter"></meter>
+                            <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="power-meter-power"></meter>
+                        </div>
+                    </div>
 
+                    <div class="data-tile">
+                        <source-switch class="source-switch"
+                                       effect="sources"
+                                       path="power"
+                                       value="ble:power-meter">
+                            <h2 class="data-tile--heading">Light bulb 2</h2>
+                            <div class="data-tile--value-cont">
+                                <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="power-meter-power" class="info-cell-value" prop="power">--</meter>
+                            </div>
+                        </source-switch>
                         </div>
 
 
-                    </div>
 
                     
 
@@ -132,12 +144,26 @@
                                                path="speed"
                                                value="ble:power-meter">
                                     <h3 class="">Speed</h3>
-                                    <speed-display id="power-meter-speed"
+                                    <data-display id="power-meter-speed"
                                                    class="info-cell-value"
                                                    prop="speed">
                                         <value>--</value>
                                         <unit class="data-tile-small--unit"></unit>
-                                    </speed-display>
+                                    </data-display>
+                                </source-switch>
+                            </div>
+                            <div class="info-cell">
+                                <source-switch class="source-switch"
+                                               effect="sources"
+                                               path="distance"
+                                               value="ble:power-meter">
+                                    <h3 class="">Distance</h3>
+                                    <data-display id="power-meter-distance"
+                                                   class="info-cell-value"
+                                                   prop="distance">
+                                        <value>--</value>
+                                        <unit class="data-tile-small--unit"></unit>
+                                    </data-display>
                                 </source-switch>
                             </div>
                         </div>

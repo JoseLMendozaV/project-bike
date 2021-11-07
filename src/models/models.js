@@ -93,8 +93,7 @@ class Speed extends Model {
     }
     defaultValue() { return 0; }
     defaultIsValid(value) {
-        return (Number.isInteger(value) || Number.isFloat(value)) &&
-            inRange(self.min, self.max, value);
+        return Number.isInteger(value) && inRange(self.min, self.max, value);
     }
 }
 
@@ -127,6 +126,7 @@ class Sources extends Model {
             power: 'ble:controllable',
             cadence: 'ble:controllable',
             speed: 'ble:controllable',
+            distance: 'ble:controllable',
             control: 'ble:controllable',
             heartRate: 'ble:hrm'
         };
@@ -474,6 +474,7 @@ let models = { power,
                heartRate,
                cadence,
                speed,
+               distance,
                sources,
                powerTarget,
                resistanceTarget,

@@ -4,6 +4,7 @@ import { models } from './models/models.js';
 let db = {
     // Data Screen
     power: models.power.default,
+    power2: models.power2.default,
     heartRate: models.heartRate.default,
     cadence: models.cadence.default,
     speed: models.speed.default,
@@ -47,6 +48,10 @@ xf.reg(models.heartRate.prop, (heartRate, db) => {
 
 xf.reg(models.power.prop, (power, db) => {
     db.power = power;
+});
+
+xf.reg(models.power2.prop, (power2, db) => {
+    db.power2 = power2;
 });
 
 xf.reg(models.cadence.prop, (cadence, db) => {

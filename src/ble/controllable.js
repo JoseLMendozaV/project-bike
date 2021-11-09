@@ -21,6 +21,11 @@ class Controllable extends Device {
                 self.control.setTargetPower(power);
             }
         });
+        xf.sub('db:powerTarget', power2 => {
+            if(self.isConnected(self.device) && (equals(mode, 'erg'))) {
+                self.control.setTargetPower(power2);
+            }
+        });
         xf.sub('db:resistanceTarget', resistance => {
             if(self.isConnected(self.device)) self.control.setTargetResistance(resistance);
         });
@@ -79,10 +84,12 @@ class Controllable extends Device {
 function onIndoorBikeData(value) {
     const self = this;
     if(exists(value.power)   && models.sources.isSource('power', self.id))   xf.dispatch(`power`, value.power);
+    if(exists(value.power2)   && models.sources.isSource('power2', self.id))   xf.dispatch(`power2`, value.power2);
     if(exists(value.cadence) && models.sources.isSource('cadence', self.id)) xf.dispatch(`cadence`, value.cadence);
     if(exists(value.speed)   && models.sources.isSource('speed', self.id))   xf.dispatch(`speed`, value.speed);
     if(exists(value.distance)   && models.sources.isSource('distance', self.id))   xf.dispatch(`distance`, value.distance);
-    if(exists(value.status)  && models.sources.isSource('power', self.id)) {
+    if(exists(value.status)  && models.sources.isSource('power', self.id));
+    if(exists(value.status)  && models.sources.isSource('power2', self.id)) {
         xf.dispatch(`${self.id}:fec:calibration`, value.status);
     }
 }

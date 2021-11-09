@@ -63,6 +63,18 @@ class Power extends Model {
     }
 }
 
+class Power2 extends Model {
+    postInit(args) {
+        this.min = args.min || 0;
+        this.max = args.max || 2500;
+    }
+    defaultValue() { return 0; }
+    defaultIsValid(value) {
+        value = 0.1885 * value * 0.73;
+        return Number.isInteger(value) && inRange(self.min, self.max, value);
+    }
+}
+
 class HeartRate extends Model {
     postInit(args) {
         this.min = args.min || 0;
@@ -124,6 +136,7 @@ class Sources extends Model {
     defaultValue() {
         const sources = {
             power: 'ble:controllable',
+            power2: 'ble:controllable',
             cadence: 'ble:controllable',
             speed: 'ble:controllable',
             distance: 'ble:controllable',
@@ -448,6 +461,7 @@ function Session(args = {}) {
 
 
 const power = new Power({prop: 'power'});
+const power2 = new Power2({prop: 'power2'});
 const heartRate = new HeartRate({prop: 'heartRate'});
 const cadence = new Cadence({prop: 'cadence'});
 const speed = new Speed({prop: 'speed'});
@@ -471,6 +485,7 @@ const workouts = new Workouts({prop: 'workouts', workoutModel: workout});
 const session = Session();
 
 let models = { power,
+               power2,
                heartRate,
                cadence,
                speed,

@@ -4,7 +4,6 @@ import './views/views.js';
 import './connectionManager.js';
 
 
-
 function startServiceWorker() {
     if('serviceWorker' in navigator) {
         try {
@@ -29,3 +28,5 @@ function start() {
 function stop() {}
 
 start();
+
+

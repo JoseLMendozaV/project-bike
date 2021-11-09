@@ -26,67 +26,78 @@
                 <div id="home-page" class="page active" page="home">
 
                 <div class="data-tiles cf">
+                    <div class="data-tile">
+                        <h3 class="">Name</h3>
+                        <effect-display id="controllable-name"
+                                        class="data-tile-small--value"
+                                        effect="ble:power-meter:name">--</effect-display>
+                    </div>
                         <div class="data-tile">
                         <source-switch class="source-switch"
                                        effect="sources"
                                        path="power"
                                        value="ble:power-meter">
-                            <h2 class="data-tile--heading">Power</h2>
-                            <div class="data-tile--value-cont">
+                            <h2 class="data-tile-small--heading">Power</h2>
+                            <div class="data-tile-small--value-cont">
                                 <data-display id="power-meter-power"
-                                              class="info-cell-value"
+                                              class="data-tile-small--value"
                                               prop="power">--</data-display>
                             </div>
                         </source-switch>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Speed</h2>
+                            <h2 class="data-tile-small--heading">Cadence</h2>
                             <div class="data-tile-small--value-cont">
-                                <data-display id="speed-value"
+                                <data-display id="cadence-value"
                                               class="data-tile-small--value"
-                                              prop="speed">
+                                              prop="cadence">
                                     <value>--</value>
                                     <unit class="data-tile-small--unit"></unit>
                                 </data-display>
                             </div>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Distance</h2>
-                            <div class="data-tile-small--value-cont">
-                                <data-display id="distance-value"
+                            <source-switch class="source-switch"
+                                           effect="sources"
+                                           path="power"
+                                           value="ble:power-meter">
+                                <h2 class="data-tile-small--heading">Speed</h2>
+                                <div class="data-tile-small--value-cont">
+                                    <data-display id="power-meter-power"
                                                   class="data-tile-small--value"
-                                                  prop="distance">
-                                    <value>--</value>
-                                    <unit class="data-tile-small--unit"></unit>
-                                </data-display>
+                                                  prop="power2">--</data-display>
+                                </div>
+                            </source-switch>
                             </div>
-                        </div>
                     </div>
-                    
+
+
+
                     <div class="line"></div>
                     <div class="data-tiles cf">
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Light bulb</h2>
-                            <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="power-meter-power"></meter>
+                            <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="somemeter" ></meter>
                         </div>
                     </div>
 
-                    <div class="data-tile">
-                        <source-switch class="source-switch"
-                                       effect="sources"
-                                       path="power"
-                                       value="ble:power-meter">
-                            <h2 class="data-tile--heading">Light bulb 2</h2>
-                            <div class="data-tile--value-cont">
-                                <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="power-meter-power" class="info-cell-value" prop="power">--</meter>
-                            </div>
-                        </source-switch>
+                    <div class="center">
+	 
+                        <div class="progress">
+                        <p>HTML5</p>
+                            <progress id="html5" max="100" value="0" id="somemeter"></progress>
+                            <span></span>
                         </div>
+  
+                    </div>
 
+                    <script type="text/javascript">
 
-
-                    
-
+                    (function() {
+                        var meter = document.getElementById('somemeter');
+                        meter.value = <data-display id="power-meter-power" prop="power"></data-display>;
+                        })();
+                    </script>
 
                     
             </div> <!-- end page-home -->

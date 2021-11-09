@@ -71,7 +71,7 @@ class Power2 extends Model {
     defaultValue() { return 0; }
     defaultIsValid(value) {
         value = 0.1885 * value * 0.73;
-        return Number.isInteger(value) && inRange(self.min, self.max, value);
+        return Number.isInteger(value) || Number.isFloat(value) && inRange(self.min, self.max, value);
     }
 }
 

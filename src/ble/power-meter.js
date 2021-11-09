@@ -50,11 +50,29 @@ function onPowerData(data) {
     if(exists(data.speed)   && models.sources.isSource('speed', self.id))   xf.dispatch('speed', data.speed);
     if(exists(data.distance)   && models.sources.isSource('distance', self.id))   xf.dispatch('distance', data.distance);
     if(exists(data.offsetIndicator)) xf.dispatch(`${self.id}:offsetIndicator`, data.offsetIndicator);
-    // console.log(data);
+    //console.log(data);
 }
 function onCyclingPowerInfo() {
 }
 function onCyclingPowerControlPoint() {
 }
+
+//Just trying
+(function() {
+    var textarea = document.getElementById('sometext');
+    var meter = document.getElementById('somemeter');
+    
+    var theLength = 0;
+    
+    textarea.addEventListener('keypress', function() {
+        theLength = textarea.value.length;
+    
+        if (theLength > 160) {
+            theLength = 160;
+        }
+
+        meter.value = theLength;
+    });
+})();
 
 export { PowerMeter };

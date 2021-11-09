@@ -32,6 +32,11 @@
                                         class="data-tile-small--value"
                                         effect="ble:power-meter:name">--</effect-display>
                     </div>
+                </div>
+
+                <div class="line"></div>
+
+                    <div class="data-tiles cf">
                         <div class="data-tile">
                         <source-switch class="source-switch"
                                        effect="sources"
@@ -77,6 +82,7 @@
                     <div class="data-tiles cf">
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Light bulb</h2>
+                            <textarea id="sometext"></textarea>
                             <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="somemeter" ></meter>
                         </div>
                     </div>
@@ -84,7 +90,7 @@
                     <script type="text/javascript">
 
                     (function() {
-                        var meter = document.getElementById('somemeter');
+                        var meter = document.getElementById('somemeter2');
                         meter.value = <data-display id="power-meter-power" prop="power"></data-display>;
                         })();
                     </script>
@@ -137,34 +143,6 @@
                                     <data-display id="power-meter-cadence"
                                                   class="info-cell-value"
                                                   prop="cadence">--</data-display>
-                                </source-switch>
-                            </div>
-                            <div class="info-cell">
-                                <source-switch class="source-switch"
-                                               effect="sources"
-                                               path="speed"
-                                               value="ble:power-meter">
-                                    <h3 class="">Speed</h3>
-                                    <data-display id="power-meter-speed"
-                                                   class="info-cell-value"
-                                                   prop="speed">
-                                        <value>--</value>
-                                        <unit class="data-tile-small--unit"></unit>
-                                    </data-display>
-                                </source-switch>
-                            </div>
-                            <div class="info-cell">
-                                <source-switch class="source-switch"
-                                               effect="sources"
-                                               path="distance"
-                                               value="ble:power-meter">
-                                    <h3 class="">Distance</h3>
-                                    <data-display id="power-meter-distance"
-                                                   class="info-cell-value"
-                                                   prop="distance">
-                                        <value>--</value>
-                                        <unit class="data-tile-small--unit"></unit>
-                                    </data-display>
                                 </source-switch>
                             </div>
                         </div>

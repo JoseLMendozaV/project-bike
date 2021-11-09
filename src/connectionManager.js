@@ -8,9 +8,6 @@ function start() {
     const controllable = new Controllable();
     const hrm = new Hrm();
     const pm = new PowerMeter();
-
-    'const fec = new FEC();'
-    'const antHrm = new AntHrm();'
 }
 
 start();

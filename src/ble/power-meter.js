@@ -17,7 +17,6 @@ class PowerMeter extends Device {
         self.cps = await self.cyclingPower(device);
 
         xf.dispatch('sources', {power: self.id});
-        xf.dispatch('sources', {power2: self.id});
         xf.dispatch(`${self.id}:feature`, self.cps.feature);
         console.log(self.cps.feature);
     }
@@ -57,22 +56,5 @@ function onCyclingPowerInfo() {
 function onCyclingPowerControlPoint() {
 }
 
-//Just trying
-(function() {
-    var textarea = document.getElementById('sometext');
-    var meter = document.getElementById('somemeter');
-    
-    var theLength = 0;
-    
-    textarea.addEventListener('keypress', function() {
-        theLength = textarea.value.length;
-    
-        if (theLength > 160) {
-            theLength = 160;
-        }
-
-        meter.value = theLength;
-    });
-})();
 
 export { PowerMeter };

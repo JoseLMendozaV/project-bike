@@ -96,7 +96,7 @@ function getPower(dataview) {
 }
 function getWheelRevolutions(dataview) {
     const flags = dataview.getUint16(0, true);
-    return dataview.getUint32(wheelRevolutionsIndex(flags), true);
+    return dataview.getUint16(wheelRevolutionsIndex(flags), true);
 }
 function getWheelEvent(dataview) {
     const flags = dataview.getUint16(0, true);
@@ -179,6 +179,11 @@ function cyclingPowerMeasurementDecoder(dataview) {
     data['power'] = getPower(dataview);
     data['offsetIndicator'] = offsetIndicator(flags);
 
+    data['power2'] = getPower(dataview)*0.1885* 0.73;
+
+    var meter = document.getElementById('somemeter');
+    meter.value = data['power'] = getPower(dataview);
+
     if(wheelRevolutionData(flags)) {
         data['wheelRevolutions'] = getWheelRevolutions(dataview);
         data['wheelEvent'] = getWheelEvent(dataview);
@@ -192,6 +197,7 @@ function cyclingPowerMeasurementDecoder(dataview) {
 
     return data;
 }
+
 
 export {
     cyclingPowerMeasurementDecoder,

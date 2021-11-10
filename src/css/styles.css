@@ -1528,3 +1528,78 @@ and (orientation: landscape) {
     /* iPhone X */
     /* Galaxy S6-10 */
 }
+
+/* scale for the meter */
+.scale {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  meter{  
+    width: 100%;  
+    height: 40px;  
+  }  
+
+
+
+
+
+
+
+
+
+  /*light bulb */
+
+  
+
+
+
+
+  /* kettle */
+
+ 
+
+.vapour {
+    position: relative;
+    display: flex;
+    z-index: 1;
+    padding: 0 20px;
+    justify-content: center;
+}
+
+.vapour span {
+    position: static;
+    bottom: 50px;
+    display: flex;
+    margin: 0 2px 50px;
+    min-width: 8px;
+    height: 120px;
+    background: #fff;
+    border-radius: 50%;
+    animation: animate 5s linear infinite;
+    opacity: 0;
+    filter: blur(10px);
+    animation-delay: calc(var(--v) * -0.5s);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) scaleX(1);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-150px) scaleX(5);
+    }
+    95% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-300px) scaleX(10);
+    }
+}

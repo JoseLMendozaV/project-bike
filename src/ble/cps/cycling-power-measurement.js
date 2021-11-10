@@ -179,10 +179,28 @@ function cyclingPowerMeasurementDecoder(dataview) {
     data['power'] = getPower(dataview);
     data['offsetIndicator'] = offsetIndicator(flags);
 
+    //Speed
     data['power2'] = getPower(dataview)*0.1885* 0.73;
 
     var meter = document.getElementById('somemeter');
     meter.value = data['power'] = getPower(dataview);
+
+    //Image Light bulb
+
+    var pic;
+    if (data['power'] = getPower(dataview) == 0) {
+        pic = "light-bulb1.jpg"
+    } 
+    else if (data['power'] = getPower(dataview) >= 25) {
+        pic = "light-bulb2.jpg"
+    }
+    else if (data['power'] = getPower(dataview) >= 50) {
+        pic = "light-bulb3.jpg"
+    }
+    else {
+        pic = "light-bulb4.jpg"
+    }
+    document.getElementById('myImage').src = pic;
 
     if(wheelRevolutionData(flags)) {
         data['wheelRevolutions'] = getWheelRevolutions(dataview);

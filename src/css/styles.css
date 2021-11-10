@@ -1566,7 +1566,7 @@ and (orientation: landscape) {
     position: relative;
     display: flex;
     z-index: 1;
-    padding: 0 20px;
+    padding: 70% 20px;
     justify-content: center;
 }
 
@@ -1574,11 +1574,11 @@ and (orientation: landscape) {
     position: static;
     bottom: 50px;
     display: flex;
-    margin: 0 2px 50px;
+    margin: 50px 2px 25px;
     min-width: 8px;
-    height: 120px;
+    height: 60px;
     background: #fff;
-    border-radius: 50%;
+    border-radius: 30%;
     animation: animate 5s linear infinite;
     opacity: 0;
     filter: blur(10px);

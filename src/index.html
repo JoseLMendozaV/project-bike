@@ -42,7 +42,7 @@
                                        effect="sources"
                                        path="power"
                                        value="ble:power-meter">
-                            <h2 class="data-tile-small--heading">Power</h2>
+                            <h2 class="data-tile-small--heading">Power (Watts)</h2>
                             <div class="data-tile-small--value-cont">
                                 <data-display id="power-meter-power"
                                               class="data-tile-small--value"
@@ -51,7 +51,7 @@
                         </source-switch>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Cadence</h2>
+                            <h2 class="data-tile-small--heading">Cadence (RPM)</h2>
                             <div class="data-tile-small--value-cont">
                                 <data-display id="cadence-value"
                                               class="data-tile-small--value"
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Speed</h2>
+                            <h2 class="data-tile-small--heading">Speed (KM/H)</h2>
                             <div class="data-tile-small--value-cont">
                                 <speed-display id="power2-value"
                                               class="data-tile-small--value"
@@ -78,48 +78,38 @@
 
                     <div class="data-tiles cf">
                         <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Light bulb</h2>
+                            <h2 class="data-tile-small--heading">New Light bulb</h2>
 
-                            
-                            <meter min="0" max="100" low="25" high="75" optimum="100" value="0" id="somemeter" ></meter>
+                            <img id="myImage" src="light-bulb1.jpg" width="100" height="180">
+  
+                            <meter min="0" max="60" low="15" high="60" optimum="50" value="0" id="somemeter" ></meter>
                             <ul class="scale">
-                                <li class=""><span class="scale">0</span></li>
-                                <li><span class="scale">25</span></li>
-                                <li><span class="scale">50</span></li>
-                                <li><span class="scale">75</span></li>
-                                <li><span class="scale">100</span></li>
+                                <li class=""><span class="scale">0W</span></li>
+                                <li><span class="scale">30W</span></li>
+                                <li><span class="scale">60W</span></li>
                               </ul>
                         </div>
+
+                        <div class="data-tile">
+                            <h2 class="data-tile-small--heading">Old Light bulb</h2>
+
+                            
+                            <meter min="0" max="100" low="25" high="100" optimum="70" value="0" id="somemeter" ></meter>
+                            <ul class="scale">
+                                <li class=""><span class="scale">0W</span></li>
+                                <li><span class="scale">50W</span></li>
+                                <li><span class="scale">100W</span></li>
+                              </ul>
+                        </div>
+
                         <div class="data-tile">
                             <h2 class="data-tile-small--heading">Kettle</h2>
-
-
-
-                            <div class="vapour">
-                                <span style="--v:1;"></span>
-                                <span style="--v:2;"></span>
-                                <span style="--v:5;"></span>
-                                <span style="--v:4;"></span>
-                                <span style="--v:6;"></span>
-                                <span style="--v:19;"></span>
-                                <span style="--v:7;"></span>
-                                <span style="--v:8;"></span>
-                                <span style="--v:9;"></span>
-                                <span style="--v:10;"></span>
-                                <span style="--v:11;"></span>
-                                <span style="--v:18;"></span>
-                            </div>
-
-
-
                             
                             <meter min="0" max="1200" low="100" high="1100" optimum="800" value="0" id="somemeter" ></meter>
                             <ul class="scale">
-                                <li class=""><span class="scale">0</span></li>
-                                <li><span class="scale">300</span></li>
-                                <li><span class="scale">600</span></li>
-                                <li><span class="scale">900</span></li>
-                                <li><span class="scale">1200</span></li>
+                                <li class=""><span class="scale">0W</span></li>
+                                <li><span class="scale">600W</span></li>
+                                <li><span class="scale">1200W</span></li>
                               </ul>
                         </div>
                     </div>
@@ -181,7 +171,7 @@
                                                effect="sources"
                                                path="power2"
                                                value="ble:power-meter">
-                                    <h3 class="">Speed-try</h3>
+                                    <h3 class="">Speed</h3>
                                     <speed-display id="power-meter-power2"
                                                    class="info-cell-value"
                                                    prop="power2">

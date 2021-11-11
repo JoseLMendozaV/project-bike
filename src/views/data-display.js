@@ -156,7 +156,7 @@ class SpeedDisplay extends DataDisplay {
         if(measurement === 'imperial') {
             this.unit = ` mph`;
         } else {
-            this.unit = ` kph`;
+            this.unit = ` mph`;
         }
     }
     kmhToMph(kmh) {

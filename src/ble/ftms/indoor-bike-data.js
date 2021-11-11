@@ -20,8 +20,8 @@ const flags = {
 
 const fields = {
     Flags:                 { type: 'Uint16', size: 2, resolution: 1,    unit: 'bit'     },
-    InstantaneousSpeed:    { type: 'Uint16', size: 2, resolution: 0.01, unit: 'kph'     },
-    AverageSpeed:          { type: 'Uint16', size: 2, resolution: 0.01, unit: 'kph'     },
+    InstantaneousSpeed:    { type: 'Uint16', size: 2, resolution: 0.01, unit: 'mph'     },
+    AverageSpeed:          { type: 'Uint16', size: 2, resolution: 0.01, unit: 'mph'     },
     InstantaneousCandence: { type: 'Uint16', size: 2, resolution: 0.5,  unit: 'rpm'     },
     AverageCandence:       { type: 'Uint16', size: 2, resolution: 0.5,  unit: 'rpm'     },
     TotalDistance:         { type: 'Uint24', size: 3, resolution: 1,    unit: 'm'       },

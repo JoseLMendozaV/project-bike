@@ -180,27 +180,35 @@ function cyclingPowerMeasurementDecoder(dataview) {
     data['offsetIndicator'] = offsetIndicator(flags);
 
     //Speed
-    data['power2'] = getPower(dataview)*0.1885* 0.73;
+    data['power2'] = getPower(dataview)*0.3953488372;
 
     var meter = document.getElementById('somemeter');
-    meter.value = data['power'] = getPower(dataview);
+    meter.value = getPower(dataview);
+
+    var meter2 = document.getElementById('somemeter2');
+    meter2.value = getPower(dataview);
+
+    var meter3 = document.getElementById('somemeter3');
+    meter3.value = getPower(dataview);
 
     //Image Light bulb
 
     var pic;
-    if (data['power'] = getPower(dataview) == 0) {
+    if (getPower(dataview) == 0) {
         pic = "light-bulb1.jpg"
     } 
-    else if (data['power'] = getPower(dataview) >= 25) {
+    else if (getPower(dataview) >= 25 && getPower(dataview) < 50) {
         pic = "light-bulb2.jpg"
     }
-    else if (data['power'] = getPower(dataview) >= 50) {
+    else if (getPower(dataview) >= 50 && getPower(dataview) < 75) {
         pic = "light-bulb3.jpg"
     }
-    else {
+    else if (getPower(dataview) >= 75){
         pic = "light-bulb4.jpg"
     }
     document.getElementById('myImage').src = pic;
+
+    
 
     if(wheelRevolutionData(flags)) {
         data['wheelRevolutions'] = getWheelRevolutions(dataview);

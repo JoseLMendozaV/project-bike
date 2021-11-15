@@ -1,14 +1,11 @@
-import { xf, exists, equals } from '../functions.js';
+import { xf, equals } from '../functions.js';
 import { models } from './models/models.js';
 
 let db = {
     // Data Screen
     power: models.power.default,
     power2: models.power2.default,
-    heartRate: models.heartRate.default,
     cadence: models.cadence.default,
-    speed: models.speed.default,
-    distance: models.distance.default,
     sources: models.sources.default,
 
     // Targets
@@ -21,30 +18,12 @@ let db = {
 
     // Profile
     ftp: models.ftp.default,
-    weight: models.weight.default,
-    theme: models.theme.default,
-    measurement: models.measurement.default,
-
-    // Workouts
-    workouts: [],
-    workout: models.workout.default,
-
-    // Recording
-    records: [],
-    lap: [],
-    laps: [],
-    lapStartTime: false,
-    gpsData: [],
-    gps: false,
 
 };
 
 xf.create(db);
 
 // Data Screen
-xf.reg(models.heartRate.prop, (heartRate, db) => {
-    db.heartRate = heartRate;
-});
 
 xf.reg(models.power.prop, (power, db) => {
     db.power = power;
@@ -56,14 +35,6 @@ xf.reg(models.power2.prop, (power2, db) => {
 
 xf.reg(models.cadence.prop, (cadence, db) => {
     db.cadence = cadence;
-});
-
-xf.reg(models.speed.prop, (speed, db) => {
-    db.speed = speed;
-});
-
-xf.reg(models.distance.prop, (distance, db) => {
-    db.distance = distance;
 });
 
 xf.reg(models.sources.prop, (sources, db) => {
@@ -121,45 +92,11 @@ xf.reg('ui:ftp-set', (ftp, db) => {
     db.ftp = models.ftp.set(ftp);
     models.ftp.backup(db.ftp);
 });
-xf.reg('ui:weight-set', (weight, db) => {
-    db.weight = models.weight.set(weight);
-    models.weight.backup(db.weight);
-});
-xf.reg('ui:theme-switch', (_, db) => {
-    db.theme = models.theme.switch(db.theme);
-    models.theme.backup(db.theme);
-});
-xf.reg('ui:measurement-switch', (_, db) => {
-    db.measurement = models.measurement.switch(db.measurement);
-    models.measurement.backup(db.measurement);
-});
 
-// Workouts
-xf.reg('workout', (workout, db) => {
-    db.workout = models.workout.set(workout);
-});
-xf.reg('ui:workout:select', (id, db) => {
-    db.workout = models.workouts.get(db.workouts, id);
-});
-xf.reg('ui:workout:upload', async function(workoutFile, db) {
-    const workoutText = await models.workout.readFromFile(workoutFile);
-    const workout = models.workout.parse(workoutText);
-    models.workouts.add(db.workouts, workout);
-    xf.dispatch('db:workouts', db);
-});
-xf.reg('ui:activity:save', (_, db) => {
-    try {
-        models.workout.save(db);
-        xf.dispatch('activity:save:success');
-    } catch (err) {
-        console.error(`Error on activity save: `, err);
-        xf.dispatch('activity:save:fail');
-    }
-});
+
 xf.reg('activity:save:success', (e, db) => {
     // file:download:activity
     // reset db session:
-    db.records = [];
     db.resistanceTarget = 0;
     db.slopeTarget = 0;
     db.powerTarget = 0;
@@ -178,16 +115,10 @@ xf.reg('lock:release', (e, db) => {
 xf.reg('app:start', async function(_, db) {
 
     db.ftp = models.ftp.restore();
-    db.weight = models.weight.restore();
-    db.theme = models.theme.restore();
-    db.measurement = models.measurement.restore();
 
-    db.workouts = models.workouts.restore();
-    db.workout = models.workout.restore(db);
 
     await models.session.start();
     await models.session.restore(db);
-    xf.dispatch('workout:restore');
 
 });
 

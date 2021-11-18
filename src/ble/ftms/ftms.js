@@ -4,11 +4,16 @@ import { indoorBikeDataDecoder } from './indoor-bike-data.js';
 import { powerTarget,
          resistanceTarget,
          slopeTarget,
+         simulationParameters,
          requestControl,
          controlPointResponseDecoder } from './control-point.js';
 
 import { fitnessMachineStatusDecoder } from './fitness-machine-status.js';
 
+import { fitnessMachineFeatureDecoder } from './fitness-machine-feature.js';
+
+import { supportedPowerRange,
+         supportedResistanceLevelRange } from './supported.js';
 
 function eventToValue(decoder, callback) {
     return function (e) {

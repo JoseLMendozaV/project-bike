@@ -1106,7 +1106,7 @@ body.dark-theme {
     cursor: pointer;
 }
 .source-switch.active {
-    color: #fff;
+    color: rgb(0, 0, 0);
 }
 .info-cell {
     padding: 0 5px;
@@ -1425,25 +1425,80 @@ and (orientation: landscape) {
 
   /* kettle */
 
- 
+  .coffeeBlock {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+}
+
+.coffee {
+    background-color: #501E03;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 99;
+    position: absolute;
+    margin: 30%;
+    margin-top:2%;
+    width: 233px;
+}
+
+.lid {
+    background-color: #fff;
+    height: 20px;
+    border-radius: 50%;
+    border: 8px solid #ddd;
+    z-index: 9;
+    position: relative;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 51%);
+}
+
+.cup {
+    margin: -18px auto 0;
+    background-color: #fff;
+    height: 300px;
+    width: 100%;
+    max-width: 240px;
+    /* border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%; */
+    clip-path: polygon(50% 250%, 0 0, 100% 0);
+}
+
+.logo {
+    max-width: 100px;
+    position: relative;
+    top: 15%;
+    left: 3%;
+}
+
+.bottom {
+    background-color: #fff;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 9;
+    position: relative;
+    width: 144px;
+    margin: -10px auto 0;
+}
 
 .vapour {
     position: relative;
     display: flex;
     z-index: 1;
-    padding: 70% 20px;
+    padding: 0 20px;
     justify-content: center;
 }
 
 .vapour span {
-    position: static;
+    position: relative;
     bottom: 50px;
-    display: flex;
-    margin: 50px 2px 25px;
+    display: block;
+    margin: 0 2px 50px;
     min-width: 8px;
-    height: 60px;
-    background: #fff;
-    border-radius: 30%;
+    height: 120px;
+    background: #7d7d7d;
+    border-radius: 50%;
     animation: animate 5s linear infinite;
     opacity: 0;
     filter: blur(10px);
@@ -1471,6 +1526,17 @@ and (orientation: landscape) {
 
 
 
+
+
+
+/* Center Image Tree ----------------------------------------------*/
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
 
 /* Another build ----------------------------------------------*/
 
@@ -1554,6 +1620,34 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+   /*Color */
+    --black:       #000;
+    --white:       #fff;
+    --gray:        #aaa;
+    --green:       #40FF70;
+    --red:         #FF495F;
+    --yellow:      #F8C73A;
+    --dark:        #28272D;
+    --chrome:      #35363a;
+
+    --zone-red:    #FE340B;
+    --zone-orange: #FF663A;
+    --zone-yellow: #F8C73A;
+    --zone-green:  #57C057;
+    --zone-teal:   #bffff9;
+    --zone-blue:   #328AFF;
+    --zone-gray:   #636468;
+
+    --orange-logo: #FC4C02;
+    --white-gray:  #F7F7FA;
+    --red-logo:    #E50914;
+
+    --black-opacity-01:  rgba(0,0,0, 0.1);
+    --black-opacity-02:  rgba(0,0,0, 0.2);
+    --white-opacity-01:  rgba(255,255,255, 0.1);
+    --white-opacity-03:  rgba(255,255,255, 0.3);
+  
 }
 
 hr {

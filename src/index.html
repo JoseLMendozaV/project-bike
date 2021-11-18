@@ -16,7 +16,8 @@
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
 
     <title>Energy Bike Research Project</title>
 
@@ -26,6 +27,8 @@
     <link rel="manifest" href="./manifest.webmanifest">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
 </head>
 
 <body id="page-top">
@@ -42,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#portfolio">Indoor Bike Info</a></li>
+                            href="#BikeInfo">Indoor Bike Info</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#configuration">Configuration</a></li>
                 </ul>
@@ -64,10 +67,10 @@
             <p class="masthead-subheading font-weight-light mb-0">Info</p>
         </div>
     </header>
-    <!-- Portfolio Section-->
-    <section class="page-section bg-grey portfolio" id="portfolio">
+    <!-- BikeInfo Section-->
+    <section class="page-section bg-grey portfolio" id="BikeInfo">
         <div class="container">
-            <!-- Portfolio Section Heading-->
+            <!-- BikeInfo Section Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Indoor Bike Info</h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
@@ -75,170 +78,228 @@
                 <div class="divider-custom-icon"><i class="fas fa-bolt"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Portfolio Grid Items-->
+            <!-- BikeInfo Grid Items-->
             <div class="wrapper">
-                <div id="home-page" class="page active" page="home">
 
-                    <div class="data-tiles cf">
-                        <div class="data-tile"></div>
-                        <div class="data-tile">
-                            <h3 class="">Bike Number</h3>
-                            <effect-display id="controllable-name" class="data-tile-small--value"
-                                effect="ble:power-meter:name">--</effect-display>
-                        </div>
+
+                <div class="data-tiles cf">
+                    <div class="data-tile"></div>
+                    <div class="data-tile">
+                        <h3 class="">Bike Number</h3>
+                        <effect-display id="controllable-name" class="data-tile-small--value"
+                            effect="ble:power-meter:name">--</effect-display>
                     </div>
+                </div>
 
-                    <div class="line"></div>
+                <div class="line"></div>
 
-                    <div class="data-tiles cf">
-                        <div class="data-tile">
-                            <source-switch class="source-switch" effect="sources" path="power" value="ble:power-meter">
-                                <h2 class="data-tile-small--heading">Power (Watts)</h2>
-                                <div class="data-tile-small--value-cont">
-                                    <data-display id="power-meter-power" class="data-tile-small--value" prop="power">--
-                                    </data-display>
-                                </div>
-                            </source-switch>
+                <div class="data-tiles cf">
+                    <div class="data-tile">
+                        <h5>Power (Watts)</h5>
+                        <h3>
+                            <p id="Power1">0</p>
+                        </h3>
 
-                            <!--------------------Velocimeter----------------------->
 
-                            <div id="speedtest">
-                                <svg id="gauge" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
-                                    style="enable-background:new 0 0 100 100;" xml:space="preserve">
-                                    <path style="fill: #e31212;"
-                                        d="M12.9,75.5c0.3,0.5,0.7,0.9,1,1.4l7.6-5.7c-0.3-0.4-0.5-0.7-0.8-1.1L12.9,75.5z" />
-                                    <path style="fill: #ea1f39; display: none;"
-                                        d="M9.3,69.3c0.3,0.5,0.5,1,0.8,1.5l8.4-4.4c-0.2-0.4-0.4-0.8-0.6-1.2L9.3,69.3z" />
-                                    <path style="fill: #f12d60; display: none;"
-                                        d="M6.7,62.4C6.9,62.9,7,63.5,7.2,64l9.1-3c-0.1-0.4-0.3-0.8-0.4-1.2L6.7,62.4z" />
-                                    <path style="fill: #f83c85; display: none;"
-                                        d="M5.3,55.2c0,0.6,0.1,1.1,0.2,1.7l9.4-1.5c-0.1-0.4-0.1-0.9-0.2-1.3L5.3,55.2z" />
-                                    <path style="fill: #ff4ba8; display: none;"
-                                        d="M5,47.9c0,0.6,0,1.1,0,1.7l9.5,0.1c0-0.5,0-0.9,0-1.4L5,47.9z" />
-                                    <path style="fill: #fb3eb2; display: none;"
-                                        d="M5.9,40.7c-0.1,0.6-0.2,1.1-0.3,1.7L15,44c0.1-0.4,0.2-0.9,0.2-1.3L5.9,40.7z" />
-                                    <path style="fill: #f732bf; display: none;"
-                                        d="M8,33.7c-0.2,0.5-0.4,1.1-0.6,1.6l9,3.1c0.1-0.4,0.3-0.9,0.5-1.3L8,33.7z" />
-                                    <path style="fill: #f226cd; display: none;"
-                                        d="M11.2,27.1c-0.3,0.5-0.5,1-0.8,1.5l8.3,4.6c0.2-0.4,0.4-0.8,0.7-1.2L11.2,27.1z" />
-                                    <path style="fill: #ee1adc; display: none;"
-                                        d="M15.5,21.2c-0.4,0.4-0.8,0.9-1.1,1.3l7.5,5.8c0.3-0.4,0.6-0.7,0.9-1.1L15.5,21.2z" />
-                                    <path style="fill: #ae19de; display: none;"
-                                        d="M20.6,16c-0.5,0.3-0.9,0.7-1.3,1.1l6.5,7c0.3-0.3,0.6-0.6,1-0.9L20.6,16z" />
-                                    <path style="fill: #6618cd; display: none;"
-                                        d="M26.4,11.7c-0.5,0.3-0.9,0.6-1.4,0.9l5.3,7.9c0.3-0.2,0.7-0.5,1-0.7L26.4,11.7z" />
-                                    <path style="fill: #2716bd; display: none;"
-                                        d="M33,8.3c-0.6,0.2-1.1,0.5-1.6,0.7l3.9,8.7c0.4-0.2,0.9-0.4,1.3-0.6L33,8.3z" />
-                                    <path style="fill: #1537ac; display: none;"
-                                        d="M39.9,6.1c-0.5,0.1-1.1,0.3-1.6,0.4l2.5,9.2c0.4-0.1,0.8-0.2,1.2-0.3L39.9,6.1z" />
-                                    <path style="fill: #2061c1; display: none;"
-                                        d="M47.2,5.2c-0.6,0-1.1,0-1.7,0.1l0.9,9.4c0.4,0,0.9-0.1,1.3-0.1L47.2,5.2z" />
-                                    <path style="fill: #2c90d5; display: none;"
-                                        d="M54.5,5.2c-0.6,0-1.1-0.1-1.7-0.1l-0.6,9.5c0.4,0,0.9,0.1,1.3,0.1L54.5,5.2z" />
-                                    <path style="fill: #3bc2ea; display: none;"
-                                        d="M61.6,6.5c-0.5-0.1-1.1-0.3-1.6-0.4l-2.2,9.3c0.4,0.1,0.9,0.2,1.3,0.3L61.6,6.5z" />
-                                    <path style="fill: #4bf7ff; display: none;"
-                                        d="M68.6,9C68,8.7,67.5,8.5,67,8.3l-3.6,8.8c0.4,0.2,0.8,0.3,1.2,0.5L68.6,9z" />
-                                    <path style="fill: #39f6d2; display: none;"
-                                        d="M74.9,12.5c-0.4-0.3-0.9-0.6-1.4-0.9l-5,8.1c0.4,0.2,0.7,0.5,1.1,0.7L74.9,12.5z" />
-                                    <path style="fill: #28ed99; display: none;"
-                                        d="M80.6,17c-0.5-0.4-0.9-0.7-1.3-1.1l-6.2,7.2c0.3,0.3,0.7,0.6,1,0.9L80.6,17z" />
-                                    <path style="fill: #19e55d; display: none;"
-                                        d="M85.7,22.4c-0.4-0.4-0.7-0.9-1.1-1.3l-7.4,6.1c0.3,0.3,0.5,0.7,0.8,1L85.7,22.4z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M89.6,28.6c-0.2-0.5-0.5-1-0.8-1.5L80.6,32c0.2,0.4,0.4,0.7,0.6,1.1L89.6,28.6z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M92.5,35.3c-0.2-0.5-0.4-1.1-0.6-1.6l-8.8,3.4c0.2,0.4,0.3,0.8,0.5,1.2L92.5,35.3z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M94.4,42.2c-0.1-0.5-0.2-1.1-0.3-1.6l-9.4,2c0.1,0.4,0.2,0.9,0.2,1.3L94.4,42.2z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M95,47.8l-9.5,0.5c0,0.4,0,0.9,0,1.3l9.5-0.1C95,48.9,95,48.4,95,47.8z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M94.5,56.8c0.1-0.5,0.1-1.1,0.2-1.7l-9.4-1c-0.1,0.4-0.1,0.9-0.2,1.3L94.5,56.8z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M92.8,63.9c0.2-0.5,0.3-1,0.5-1.7l-9.1-2.6c-0.1,0.4-0.3,0.9-0.4,1.3L92.8,63.9z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M90,70.7c0.2-0.5,0.5-1,0.8-1.5l-8.7-4.1c-0.2,0.4-0.4,0.8-0.6,1.2L90,70.7z" />
-                                    <path style="fill: #0adc1e; display: none;"
-                                        d="M89.9,80.1c0.5-0.7,1-1.3,1.4-1.9l-12-8.2c-0.3,0.4-0.6,0.9-0.9,1.3L89.9,80.1z" />
-                                </svg>
-                                <div id="gauge-label">0</div>
-                            </div>
+                        <!--------------------Velocimeter----------------------->
 
 
 
-                            <!------------------------------------------------------>
 
 
-
+                        <div id="speedtest">
+                            <svg id="gauge" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+                                style="enable-background:new 0 0 100 100;" xml:space="preserve">
+                                <path style="fill: #e31212;"
+                                    d="M12.9,75.5c0.3,0.5,0.7,0.9,1,1.4l7.6-5.7c-0.3-0.4-0.5-0.7-0.8-1.1L12.9,75.5z" />
+                                <path style="fill: #ea1f39; display: none;"
+                                    d="M9.3,69.3c0.3,0.5,0.5,1,0.8,1.5l8.4-4.4c-0.2-0.4-0.4-0.8-0.6-1.2L9.3,69.3z" />
+                                <path style="fill: #f12d60; display: none;"
+                                    d="M6.7,62.4C6.9,62.9,7,63.5,7.2,64l9.1-3c-0.1-0.4-0.3-0.8-0.4-1.2L6.7,62.4z" />
+                                <path style="fill: #f83c85; display: none;"
+                                    d="M5.3,55.2c0,0.6,0.1,1.1,0.2,1.7l9.4-1.5c-0.1-0.4-0.1-0.9-0.2-1.3L5.3,55.2z" />
+                                <path style="fill: #ff4ba8; display: none;"
+                                    d="M5,47.9c0,0.6,0,1.1,0,1.7l9.5,0.1c0-0.5,0-0.9,0-1.4L5,47.9z" />
+                                <path style="fill: #fb3eb2; display: none;"
+                                    d="M5.9,40.7c-0.1,0.6-0.2,1.1-0.3,1.7L15,44c0.1-0.4,0.2-0.9,0.2-1.3L5.9,40.7z" />
+                                <path style="fill: #f732bf; display: none;"
+                                    d="M8,33.7c-0.2,0.5-0.4,1.1-0.6,1.6l9,3.1c0.1-0.4,0.3-0.9,0.5-1.3L8,33.7z" />
+                                <path style="fill: #f226cd; display: none;"
+                                    d="M11.2,27.1c-0.3,0.5-0.5,1-0.8,1.5l8.3,4.6c0.2-0.4,0.4-0.8,0.7-1.2L11.2,27.1z" />
+                                <path style="fill: #ee1adc; display: none;"
+                                    d="M15.5,21.2c-0.4,0.4-0.8,0.9-1.1,1.3l7.5,5.8c0.3-0.4,0.6-0.7,0.9-1.1L15.5,21.2z" />
+                                <path style="fill: #ae19de; display: none;"
+                                    d="M20.6,16c-0.5,0.3-0.9,0.7-1.3,1.1l6.5,7c0.3-0.3,0.6-0.6,1-0.9L20.6,16z" />
+                                <path style="fill: #6618cd; display: none;"
+                                    d="M26.4,11.7c-0.5,0.3-0.9,0.6-1.4,0.9l5.3,7.9c0.3-0.2,0.7-0.5,1-0.7L26.4,11.7z" />
+                                <path style="fill: #2716bd; display: none;"
+                                    d="M33,8.3c-0.6,0.2-1.1,0.5-1.6,0.7l3.9,8.7c0.4-0.2,0.9-0.4,1.3-0.6L33,8.3z" />
+                                <path style="fill: #1537ac; display: none;"
+                                    d="M39.9,6.1c-0.5,0.1-1.1,0.3-1.6,0.4l2.5,9.2c0.4-0.1,0.8-0.2,1.2-0.3L39.9,6.1z" />
+                                <path style="fill: #2061c1; display: none;"
+                                    d="M47.2,5.2c-0.6,0-1.1,0-1.7,0.1l0.9,9.4c0.4,0,0.9-0.1,1.3-0.1L47.2,5.2z" />
+                                <path style="fill: #2c90d5; display: none;"
+                                    d="M54.5,5.2c-0.6,0-1.1-0.1-1.7-0.1l-0.6,9.5c0.4,0,0.9,0.1,1.3,0.1L54.5,5.2z" />
+                                <path style="fill: #3bc2ea; display: none;"
+                                    d="M61.6,6.5c-0.5-0.1-1.1-0.3-1.6-0.4l-2.2,9.3c0.4,0.1,0.9,0.2,1.3,0.3L61.6,6.5z" />
+                                <path style="fill: #4bf7ff; display: none;"
+                                    d="M68.6,9C68,8.7,67.5,8.5,67,8.3l-3.6,8.8c0.4,0.2,0.8,0.3,1.2,0.5L68.6,9z" />
+                                <path style="fill: #39f6d2; display: none;"
+                                    d="M74.9,12.5c-0.4-0.3-0.9-0.6-1.4-0.9l-5,8.1c0.4,0.2,0.7,0.5,1.1,0.7L74.9,12.5z" />
+                                <path style="fill: #28ed99; display: none;"
+                                    d="M80.6,17c-0.5-0.4-0.9-0.7-1.3-1.1l-6.2,7.2c0.3,0.3,0.7,0.6,1,0.9L80.6,17z" />
+                                <path style="fill: #19e55d; display: none;"
+                                    d="M85.7,22.4c-0.4-0.4-0.7-0.9-1.1-1.3l-7.4,6.1c0.3,0.3,0.5,0.7,0.8,1L85.7,22.4z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M89.6,28.6c-0.2-0.5-0.5-1-0.8-1.5L80.6,32c0.2,0.4,0.4,0.7,0.6,1.1L89.6,28.6z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M92.5,35.3c-0.2-0.5-0.4-1.1-0.6-1.6l-8.8,3.4c0.2,0.4,0.3,0.8,0.5,1.2L92.5,35.3z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M94.4,42.2c-0.1-0.5-0.2-1.1-0.3-1.6l-9.4,2c0.1,0.4,0.2,0.9,0.2,1.3L94.4,42.2z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M95,47.8l-9.5,0.5c0,0.4,0,0.9,0,1.3l9.5-0.1C95,48.9,95,48.4,95,47.8z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M94.5,56.8c0.1-0.5,0.1-1.1,0.2-1.7l-9.4-1c-0.1,0.4-0.1,0.9-0.2,1.3L94.5,56.8z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M92.8,63.9c0.2-0.5,0.3-1,0.5-1.7l-9.1-2.6c-0.1,0.4-0.3,0.9-0.4,1.3L92.8,63.9z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M90,70.7c0.2-0.5,0.5-1,0.8-1.5l-8.7-4.1c-0.2,0.4-0.4,0.8-0.6,1.2L90,70.7z" />
+                                <path style="fill: #0adc1e; display: none;"
+                                    d="M89.9,80.1c0.5-0.7,1-1.3,1.4-1.9l-12-8.2c-0.3,0.4-0.6,0.9-0.9,1.3L89.9,80.1z" />
+                            </svg>
+                            <div id="gauge-label">0</div>
                         </div>
-                        <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Cadence (RPM)</h2>
-                            <div class="data-tile-small--value-cont">
-                                <data-display id="cadence-value" class="data-tile-small--value" prop="cadence">
-                                    <value>--</value>
-                                    <unit class="data-tile-small--unit"></unit>
-                                </data-display>
-                            </div>
-                        </div>
-                        <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Speed (Mph)</h2>
-                            <div class="data-tile-small--value-cont">
-                                <speed-display id="power2-value" class="data-tile-small--value" prop="power2">
-                                    <value>--</value>
-                                    <unit class="data-tile-small--unit"></unit>
-                                </speed-display>
-                            </div>
-                        </div>
+
+
+
+
+
+
+                        <script>
+                            var delay = 100, value = 0, valueStore = 0, tick = 1, tickStore = 1, tickDiff = 0, tickDiffValue = 0;
+                            function valBetween(v, min, max) {
+                                return (Math.min(max, Math.max(min, v)));
+                            }
+
+                            (function loop() {
+                                var power1 = window.localStorage.getItem("powerData1");
+                                var finalPower = Number(power1);
+                                value = finalPower;
+                                tick = valBetween(Math.ceil((value / 250) * 28), 1, 28);
+                                tickDiff = Math.abs(tick - tickStore);
+                                tickDiffValue = Math.abs(value - valueStore) / tickDiff;
+                                console.log("tickDiff: " + tickDiffValue + " * " + tickDiff + " = " + (tickDiffValue * tickDiff));
+                                var counter = 0, valueStoreTemp = valueStore, tickStoreTemp = tickStore;
+                                if (value > valueStore) {
+                                    for (i = tickStoreTemp; i <= tick; i++) {
+                                        (function (i) {
+                                            setTimeout(function () {
+
+                                                $('#gauge path:nth-child(' + i + ')').show();
+                                                $('#gauge-label')
+                                                    .css('color', $('#gauge path:nth-child(' + i + ')')[0].style.fill)
+                                                    .text(Math.ceil(valueStoreTemp + (tickDiffValue * Math.abs(tickStoreTemp - i))));
+                                                if (i == tick) { $('#gauge-label').text(value); }
+                                            }, 50 * counter);
+                                            counter++;
+                                        }(i));
+                                    }
+                                } else if (value < valueStore) {
+                                    for (i = tickStoreTemp; i >= tick; i--) {
+                                        (function (i) {
+                                            setTimeout(function () {
+                                                $('body').css('background-image', 'linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(' + $('#gauge path:nth-child(' + i + ')')[0].style.fill + ', ' + $('#gauge path:nth-child(' + i + ')')[0].style.fill + ' 50%, #fff 50%)');
+                                                $('#gauge').css('box-shadow', '0 0 32px rgba(21, 55, 172, 0.25), inset 0 -192px 192px -240px ' + $('#gauge path:nth-child(' + i + ')')[0].style.fill + ', inset 0 0 2px -1px ' + $('#gauge path:nth-child(' + i + ')')[0].style.fill);
+                                                $('#gauge path:nth-child(' + i + ')').hide();
+                                                $('#gauge-label')
+                                                    .css('color', $('#gauge path:nth-child(' + i + ')')[0].style.fill)
+                                                    .text(Math.floor(valueStoreTemp - (tickDiffValue * Math.abs(tickStoreTemp - i))));
+                                                if (i == tick) { $('#gauge-label').text(value); }
+                                            }, 50 * counter);
+                                            counter++;
+                                        }(i));
+                                    }
+                                }
+                                valueStore = value;
+                                tickStore = tick;
+                                window.setTimeout(loop, delay);
+                            })();
+
+
+                        </script>
+
+
+
+
+
+
+
+                        <!------------------------------------------------------>
+
+
+
                     </div>
+                    <div class="data-tile">
+                        <h5>Cadence (RPM)</h5>
+                        <h3>
+                            <p id="Cadence1">0</p>
+                        </h3>
 
-                    <div class="line"></div>
+                    </div>
+                    <div class="data-tile">
+                        <h5>Speed (Mph)</h5>
+                        <h3>
+                            <p id="Speed1">0</p>
+                        </h3>
 
-                    <div class="data-tiles cf">
-                        <div class="data-tile">
-                            <h2 class="data-tile-small--heading">New Light bulb</h2>
 
-                            <!-- <img id="myImage" src="light-bulb1.jpg" width="100" height="180"> -->
+                    </div>
+                </div>
 
+                <div class="line"></div>
 
-                            <!---------------------------------------------------------------------->
+                <div class="data-tiles cf">
+                    <div class="data-tile">
+                        <h5>New Light bulb</h5>
 
-                            <?xml version="1.0" encoding="utf-8"?>
+                        <!---------------------------------------------------------------------->
 
-                            <svg version="1.1" id="bulb" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="177.7 0 596.5 792">
-                                <g>
-                                    <clipPath id="clip">
-                                        <path id="red" d="M614.1,582c-18.1,18.1-39.6,32.6-63.4,42.5c-23,9.5-48.2,14.8-74.8,14.8c-26.5,0-51.8-5.3-74.7-14.8l0,0
+                        <?xml version="1.0" encoding="utf-8"?>
+
+                        <svg version="1.1" id="bulb" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="177.7 0 596.5 792">
+                            <g>
+                                <clipPath id="clip">
+                                    <path id="red" d="M614.1,582c-18.1,18.1-39.6,32.6-63.4,42.5c-23,9.5-48.2,14.8-74.8,14.8c-26.5,0-51.8-5.3-74.7-14.8l0,0
                                                                 l0,0c-23.8-9.9-45.3-24.4-63.4-42.5c-17.9-17.9-32.3-39.2-42.2-62.8l-0.3-0.7c-9.5-22.9-14.8-48.2-14.8-74.7
                                                                 c0-21.2,3.4-41.6,9.6-60.6c6.4-19.8,15.9-38.2,27.9-54.6c22.3-30.5,40.6-50.5,54.7-66l0,0c27.6-30.1,41.3-45.1,43.4-86.1h60.4
                                                                 h60.4c2.1,41.3,15.5,56.2,43.2,86.8c13.8,15.3,31.5,35,53.8,65.4c11.9,16.4,21.4,34.8,27.9,54.6c6.2,19.1,9.6,39.5,9.6,60.7
                                                                 C671.4,497.9,649.5,546.8,614.1,582z" />
-                                    </clipPath>
-                                    <rect id="rectangle" x="253.9" y="121"
-                                        style="clip-path:url(#clip);fill:yellow;z-index: -1;" width="464.3"
-                                        height="534.7" />
-                                    <path class="bottomm" id="bottomm1"
-                                        d="M516,0c6.8,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4h-79.9c-6.9,0-12.4-5.5-12.4-12.4S429.3,0,436.1,0H516z" />
-                                    <path class="bottomm" id="bottomm2"
-                                        d="M532,49.1c6.9,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4H420.1c-6.8,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H532z" />
-                                    <path class="bottomm" id="bottomm3"
-                                        d="M548,98.2c6.9,0,12.4,5.5,12.4,12.4S554.8,123,548,123H404.1c-6.9,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H548z" />
-                                    <path
-                                        d="M455.4,352.1c-7.6,38.1-21.2,73.3-45.2,116.6c-3.3,6-10.8,8.1-16.8,4.8s-8.1-10.8-4.8-16.8c22.6-40.7,35.4-73.8,42.5-109.4
+                                </clipPath>
+                                <rect id="rectangle" x="253.9" y="121"
+                                    style="clip-path:url(#clip);fill:yellow;z-index: -1;" width="464.3"
+                                    height="534.7" />
+                                <path class="bottom" id="bottom1"
+                                    d="M516,0c6.8,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4h-79.9c-6.9,0-12.4-5.5-12.4-12.4S429.3,0,436.1,0H516z" />
+                                <path class="bottom" id="bottom2"
+                                    d="M532,49.1c6.9,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4H420.1c-6.8,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H532z" />
+                                <path class="bottom" id="bottom3"
+                                    d="M548,98.2c6.9,0,12.4,5.5,12.4,12.4S554.8,123,548,123H404.1c-6.9,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H548z" />
+                                <path
+                                    d="M455.4,352.1c-7.6,38.1-21.2,73.3-45.2,116.6c-3.3,6-10.8,8.1-16.8,4.8s-8.1-10.8-4.8-16.8c22.6-40.7,35.4-73.8,42.5-109.4
                                                                 c7.2-36.1,8.6-75,8.7-127.1c0-6.8,5.5-12.3,12.3-12.3s12.3,5.5,12.3,12.3C464.3,274.1,462.7,314.5,455.4,352.1z" />
-                                    <path d="M521.1,347.3c7.2,35.6,19.9,68.7,42.5,109.4c3.3,6,1.2,13.5-4.8,16.8c-6,3.3-13.5,1.2-16.8-4.8
+                                <path d="M521.1,347.3c7.2,35.6,19.9,68.7,42.5,109.4c3.3,6,1.2,13.5-4.8,16.8c-6,3.3-13.5,1.2-16.8-4.8
                                                                 c-24-43.3-37.6-78.5-45.2-116.6c-7.5-37.6-9-78-9.1-131.9c0-6.8,5.5-12.3,12.3-12.3s12.3,5.5,12.3,12.3
                                                                 C512.3,272.3,513.9,311.2,521.1,347.3z" />
-                                    <path d="M414.8,442.3l0.6-0.3c18.7-9.3,34.2-16.8,53.1-1.4l15.2,12.4c5.3,4.3,6.1,12.1,1.8,17.4s-12.1,6.1-17.4,1.8l-15.2-12.4
+                                <path d="M414.8,442.3l0.6-0.3c18.7-9.3,34.2-16.8,53.1-1.4l15.2,12.4c5.3,4.3,6.1,12.1,1.8,17.4s-12.1,6.1-17.4,1.8l-15.2-12.4
                                                                 c-6.6-5.4-15.5-1.2-26.3,4.2l-0.7,0.4c-6.8,3.5-14.3,7.2-22.9,10c-6.5,2.1-13.4-1.5-15.5-8s1.5-13.4,8-15.5
                                                                 C402.3,448.7,408.9,445.4,414.8,442.3z" />
-                                    <path d="M526,464.5l-0.7-0.4c-10.7-5.4-19.6-9.6-26.3-4.2l-15.2,12.4c-5.3,4.3-13.1,3.5-17.4-1.8c-4.3-5.3-3.5-13.1,1.8-17.4
+                                <path d="M526,464.5l-0.7-0.4c-10.7-5.4-19.6-9.6-26.3-4.2l-15.2,12.4c-5.3,4.3-13.1,3.5-17.4-1.8c-4.3-5.3-3.5-13.1,1.8-17.4
                                                                 l15.2-12.4c18.9-15.5,34.5-8,53.1,1.4l0.6,0.3c6.1,3,12.6,6.3,19.4,8.5c6.5,2,10.1,9,8,15.5c-2,6.5-9,10.1-15.5,8
                                                                 C540.4,471.6,532.9,467.9,526,464.5z" />
-                                    <path id="stroke"
-                                        d="M631.9,599.6c-20.2,20.2-44.5,36.6-71.5,47.8c-26.1,10.7-54.5,16.7-84.2,16.7s-58.2-5.9-84.2-16.7l0,0
+                                <path id="stroke"
+                                    d="M631.9,599.6c-20.2,20.2-44.5,36.6-71.5,47.8c-26.1,10.7-54.5,16.7-84.2,16.7s-58.2-5.9-84.2-16.7l0,0
                                                                 c-27-11.1-51.3-27.5-71.5-47.7c-20.1-20.1-36.4-44.2-47.6-71l-0.2-0.5C262,502.2,256,473.8,256,444c0-23.7,3.8-46.7,10.8-68.2
                                                                 c7.2-22.2,18-43,31.5-61.5c23.3-31.9,41.9-52.3,56.4-68.1l0,0l0,0c25.6-28,37.1-40.6,37.1-81.9c0-6.9,5.6-12.4,12.4-12.4h72.4h72.1
                                                                 h0.3c6.9,0,12.4,5.6,12.4,12.4c0,41.6,11.3,54.1,37.1,82.6c14.3,15.8,32.7,36.2,55.4,67.3c13.5,18.5,24.3,39.2,31.5,61.5
@@ -247,63 +308,257 @@
                                                                 c-11.9,16.4-21.4,34.8-27.9,54.6c-6.2,19-9.6,39.4-9.6,60.6c0,26.5,5.3,51.8,14.8,74.7l0.3,0.7c9.8,23.6,24.3,44.9,42.2,62.8
                                                                 c18.1,18.1,39.6,32.6,63.4,42.5l0,0l0,0c22.9,9.5,48.2,14.8,74.7,14.8c26.6,0,51.8-5.3,74.8-14.8c23.8-9.9,45.3-24.4,63.4-42.5
                                                                 c35.3-35.4,57.2-84.2,57.2-138.2c0-21.2-3.4-41.6-9.6-60.7C655.4,363.5,645.9,345.1,634,328.9z" />
-                                    <path class="ray" id="ray1" d="M768.1,603.8c5.8,3.3,7.9,10.9,4.5,16.8c-3.3,5.8-10.9,7.9-16.8,4.5l-41.5-24c-5.8-3.3-7.9-10.9-4.5-16.8
+                                <path class="ray" id="ray1" d="M768.1,603.8c5.8,3.3,7.9,10.9,4.5,16.8c-3.3,5.8-10.9,7.9-16.8,4.5l-41.5-24c-5.8-3.3-7.9-10.9-4.5-16.8
                                                                 c3.3-5.8,10.9-7.9,16.8-4.5L768.1,603.8z" />
-                                    <path class="ray" id="ray2" d="M651.8,729.2c3.4,5.9,1.4,13.4-4.5,16.8c-5.9,3.4-13.4,1.4-16.8-4.5l-24-41.5c-3.4-5.9-1.4-13.4,4.5-16.8
+                                <path class="ray" id="ray2" d="M651.8,729.2c3.4,5.9,1.4,13.4-4.5,16.8c-5.9,3.4-13.4,1.4-16.8-4.5l-24-41.5c-3.4-5.9-1.4-13.4,4.5-16.8
                                                                 c5.9-3.4,13.4-1.4,16.8,4.5L651.8,729.2z" />
-                                    <path class="ray" id="ray3"
-                                        d="M488.4,779.6c0,6.9-5.6,12.4-12.4,12.4s-12.4-5.5-12.4-12.3v-48c0-6.9,5.6-12.4,12.4-12.4c6.9,0,12.4,5.6,12.4,12.4V779.6z" />
-                                    <path class="ray" id="ray4" d="M321.5,741.5c-3.3,5.8-10.9,7.9-16.8,4.5c-5.8-3.4-7.9-10.9-4.5-16.8l24-41.5c3.4-5.8,10.9-7.9,16.8-4.5
+                                <path class="ray" id="ray3"
+                                    d="M488.4,779.6c0,6.9-5.6,12.4-12.4,12.4s-12.4-5.5-12.4-12.3v-48c0-6.9,5.6-12.4,12.4-12.4c6.9,0,12.4,5.6,12.4,12.4V779.6z" />
+                                <path class="ray" id="ray4" d="M321.5,741.5c-3.3,5.8-10.9,7.9-16.8,4.5c-5.8-3.4-7.9-10.9-4.5-16.8l24-41.5c3.4-5.8,10.9-7.9,16.8-4.5
                                                                 c5.9,3.4,7.9,10.9,4.5,16.8L321.5,741.5z" />
-                                    <path class="ray" id="ray5" d="M196.1,625.2c-5.9,3.4-13.4,1.4-16.8-4.5c-3.3-5.9-1.3-13.4,4.6-16.8l41.5-24c5.9-3.4,13.4-1.4,16.8,4.5
+                                <path class="ray" id="ray5" d="M196.1,625.2c-5.9,3.4-13.4,1.4-16.8-4.5c-3.3-5.9-1.3-13.4,4.6-16.8l41.5-24c5.9-3.4,13.4-1.4,16.8,4.5
                                                                 c3.4,5.9,1.4,13.4-4.5,16.8L196.1,625.2z" />
-                                    <path
-                                        d="M347.4,395c-3.5,8.5-6.3,17.4-8.1,26.6c-1.7,8.8-2.7,18.1-2.7,27.8c0,6.8-5.6,12.4-12.4,12.4s-12.4-5.6-12.4-12.4
+                                <path
+                                    d="M347.4,395c-3.5,8.5-6.3,17.4-8.1,26.6c-1.7,8.8-2.7,18.1-2.7,27.8c0,6.8-5.6,12.4-12.4,12.4s-12.4-5.6-12.4-12.4
                                                                 c0-11,1.2-21.9,3.3-32.6c2.1-10.9,5.4-21.3,9.6-31.3c2.6-6.3,9.8-9.2,16.1-6.6S350,388.7,347.4,395L347.4,395z M360.1,527
                                                                 L360.1,527c5,7.4,10.7,14.4,17.1,20.8c6.4,6.4,13.4,12.2,20.7,17.1l0,0l0,0c7.5,5,15.4,9.3,23.6,12.8c8.4,3.6,17.3,6.4,26.5,8.2
                                                                 c8.8,1.7,18.1,2.7,27.8,2.7c6.9,0,12.4,5.5,12.4,12.4c0,6.9-5.6,12.4-12.4,12.4c-10.9,0-21.9-1.1-32.6-3.3
                                                                 c-10.8-2.1-21.3-5.4-31.2-9.6c-9.9-4.1-19.2-9.2-27.8-15l0,0c-8.9-6-17.1-12.8-24.4-20.1c-7.4-7.4-14.1-15.6-20.1-24.4l0,0l0,0
                                                                 c-5.8-8.7-10.9-18-15-27.8c-2.6-6.2,0.4-13.5,6.6-16.1s13.5,0.3,16.1,6.6C350.9,511.9,355.2,519.8,360.1,527z" />
-                                </g>
-                            </svg>
-                            <!---------------------------------------------------------------------->
+                            </g>
+                        </svg>
+                        <!---------------------------------------------------------------------->
 
 
 
-                            <meter min="0" max="60" low="15" high="60" optimum="50" value="0" id="somemeter"></meter>
-                            <ul class="scale">
-                                <li class=""><span class="scale">0W</span></li>
-                                <li><span class="scale">30W</span></li>
-                                <li><span class="scale">60W</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Old Light bulb</h2>
+                        <meter min="0" max="60" low="15" high="60" optimum="50" value="0" id="somemeter"></meter>
 
 
-                            <meter min="0" max="100" low="25" high="100" optimum="70" value="0" id="somemeter2"></meter>
-                            <ul class="scale">
-                                <li class=""><span class="scale">0W</span></li>
-                                <li><span class="scale">50W</span></li>
-                                <li><span class="scale">100W</span></li>
-                            </ul>
-                        </div>
 
-                        <div class="data-tile">
-                            <h2 class="data-tile-small--heading">Kettle</h2>
+                        <script>
+                            var delay = 100;
 
-                            <meter min="0" max="1200" low="100" high="1100" optimum="800" value="0"
-                                id="somemeter3"></meter>
-                            <ul class="scale">
-                                <li class=""><span class="scale">0W</span></li>
-                                <li><span class="scale">600W</span></li>
-                                <li><span class="scale">1200W</span></li>
-                            </ul>
-                        </div>
+                            var tl = new TimelineLite;
+
+                            (function oli() {
+
+
+                                var light = window.localStorage.getItem("powerData1");
+                                var finalLight = Number(light);
+                                var lightPower2 = finalLight * 8.6666666667;
+
+
+
+                                tl
+                                    //.staggerFromTo(".bottomm", 0, { alpha: 0 }, { alpha: 1, fill: "#000", delay: 1 }, 0.25)
+                                    //.staggerFromTo(".ray", 0, { alpha: 0 }, { alpha: 1, fill: "#000" }, 0.1, "-=1.25")
+                                    .staggerFromTo("#rectangle", 0, { fill: "#000", alpha: 0, height: "1%" }, { fill: "#f5e317", alpha: 1, height: lightPower2, ease: Power3.easeInOut }, "-=1")
+
+
+
+                                window.setTimeout(oli, delay);
+                            })();
+                            tl
+                                .staggerFromTo(".bottom", 0.5, { alpha: 0 }, { alpha: 1, fill: "#000", delay: 1 }, 0.25)
+                                .staggerFromTo(".ray", 1, { alpha: 0 }, { alpha: 1, fill: "#000" }, 0.1, "-=1.25")
+
+                        </script>
+
+
+
+
+
+                        <ul class="scale">
+                            <li class=""><span class="scale">0W</span></li>
+                            <li><span class="scale">30W</span></li>
+                            <li><span class="scale">60W</span></li>
+                        </ul>
                     </div>
 
+                    <div class="data-tile">
+                        <h5>Old Light bulb</h5>
+
+                        <!---------------------------------------------------------------------->
+
+                        <?xml version="1.0" encoding="utf-8"?>
+
+                        <svg version="1.1" id="bulb" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="177.7 0 596.5 792">
+                            <g>
+                                <clipPath id="clip">
+                                    <path id="red"
+                                        d="M614.1,582c-18.1,18.1-39.6,32.6-63.4,42.5c-23,9.5-48.2,14.8-74.8,14.8c-26.5,0-51.8-5.3-74.7-14.8l0,0
+                                                                                        l0,0c-23.8-9.9-45.3-24.4-63.4-42.5c-17.9-17.9-32.3-39.2-42.2-62.8l-0.3-0.7c-9.5-22.9-14.8-48.2-14.8-74.7
+                                                                                        c0-21.2,3.4-41.6,9.6-60.6c6.4-19.8,15.9-38.2,27.9-54.6c22.3-30.5,40.6-50.5,54.7-66l0,0c27.6-30.1,41.3-45.1,43.4-86.1h60.4
+                                                                                        h60.4c2.1,41.3,15.5,56.2,43.2,86.8c13.8,15.3,31.5,35,53.8,65.4c11.9,16.4,21.4,34.8,27.9,54.6c6.2,19.1,9.6,39.5,9.6,60.7
+                                                                                        C671.4,497.9,649.5,546.8,614.1,582z" />
+                                </clipPath>
+                                <rect id="rectangle1" x="253.9" y="121"
+                                    style="clip-path:url(#clip);fill:yellow;z-index: -1;" width="464.3"
+                                    height="534.7" />
+                                <path class="bottomm" id="bottomm1"
+                                    d="M516,0c6.8,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4h-79.9c-6.9,0-12.4-5.5-12.4-12.4S429.3,0,436.1,0H516z" />
+                                <path class="bottomm" id="bottomm2"
+                                    d="M532,49.1c6.9,0,12.4,5.5,12.4,12.4s-5.6,12.4-12.4,12.4H420.1c-6.8,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H532z" />
+                                <path class="bottomm" id="bottomm3"
+                                    d="M548,98.2c6.9,0,12.4,5.5,12.4,12.4S554.8,123,548,123H404.1c-6.9,0-12.4-5.5-12.4-12.4s5.6-12.4,12.4-12.4H548z" />
+                                <path
+                                    d="M455.4,352.1c-7.6,38.1-21.2,73.3-45.2,116.6c-3.3,6-10.8,8.1-16.8,4.8s-8.1-10.8-4.8-16.8c22.6-40.7,35.4-73.8,42.5-109.4
+                                                                                        c7.2-36.1,8.6-75,8.7-127.1c0-6.8,5.5-12.3,12.3-12.3s12.3,5.5,12.3,12.3C464.3,274.1,462.7,314.5,455.4,352.1z" />
+                                <path
+                                    d="M521.1,347.3c7.2,35.6,19.9,68.7,42.5,109.4c3.3,6,1.2,13.5-4.8,16.8c-6,3.3-13.5,1.2-16.8-4.8
+                                                                                        c-24-43.3-37.6-78.5-45.2-116.6c-7.5-37.6-9-78-9.1-131.9c0-6.8,5.5-12.3,12.3-12.3s12.3,5.5,12.3,12.3
+                                                                                        C512.3,272.3,513.9,311.2,521.1,347.3z" />
+                                <path
+                                    d="M414.8,442.3l0.6-0.3c18.7-9.3,34.2-16.8,53.1-1.4l15.2,12.4c5.3,4.3,6.1,12.1,1.8,17.4s-12.1,6.1-17.4,1.8l-15.2-12.4
+                                                                                        c-6.6-5.4-15.5-1.2-26.3,4.2l-0.7,0.4c-6.8,3.5-14.3,7.2-22.9,10c-6.5,2.1-13.4-1.5-15.5-8s1.5-13.4,8-15.5
+                                                                                        C402.3,448.7,408.9,445.4,414.8,442.3z" />
+                                <path
+                                    d="M526,464.5l-0.7-0.4c-10.7-5.4-19.6-9.6-26.3-4.2l-15.2,12.4c-5.3,4.3-13.1,3.5-17.4-1.8c-4.3-5.3-3.5-13.1,1.8-17.4
+                                                                                        l15.2-12.4c18.9-15.5,34.5-8,53.1,1.4l0.6,0.3c6.1,3,12.6,6.3,19.4,8.5c6.5,2,10.1,9,8,15.5c-2,6.5-9,10.1-15.5,8
+                                                                                        C540.4,471.6,532.9,467.9,526,464.5z" />
+                                <path id="stroke"
+                                    d="M631.9,599.6c-20.2,20.2-44.5,36.6-71.5,47.8c-26.1,10.7-54.5,16.7-84.2,16.7s-58.2-5.9-84.2-16.7l0,0
+                                                                                        c-27-11.1-51.3-27.5-71.5-47.7c-20.1-20.1-36.4-44.2-47.6-71l-0.2-0.5C262,502.2,256,473.8,256,444c0-23.7,3.8-46.7,10.8-68.2
+                                                                                        c7.2-22.2,18-43,31.5-61.5c23.3-31.9,41.9-52.3,56.4-68.1l0,0l0,0c25.6-28,37.1-40.6,37.1-81.9c0-6.9,5.6-12.4,12.4-12.4h72.4h72.1
+                                                                                        h0.3c6.9,0,12.4,5.6,12.4,12.4c0,41.6,11.3,54.1,37.1,82.6c14.3,15.8,32.7,36.2,55.4,67.3c13.5,18.5,24.3,39.2,31.5,61.5
+                                                                                        c7,21.6,10.8,44.5,10.8,68.3C696.2,504.7,671.5,559.8,631.9,599.6z M634,328.9c-22.2-30.4-40-50.1-53.8-65.4
+                                                                                        c-27.7-30.6-41.1-45.5-43.2-86.8h-60.4h-60.4c-2.2,41-15.9,56-43.4,86.1l0,0c-14.1,15.5-32.3,35.4-54.7,66
+                                                                                        c-11.9,16.4-21.4,34.8-27.9,54.6c-6.2,19-9.6,39.4-9.6,60.6c0,26.5,5.3,51.8,14.8,74.7l0.3,0.7c9.8,23.6,24.3,44.9,42.2,62.8
+                                                                                        c18.1,18.1,39.6,32.6,63.4,42.5l0,0l0,0c22.9,9.5,48.2,14.8,74.7,14.8c26.6,0,51.8-5.3,74.8-14.8c23.8-9.9,45.3-24.4,63.4-42.5
+                                                                                        c35.3-35.4,57.2-84.2,57.2-138.2c0-21.2-3.4-41.6-9.6-60.7C655.4,363.5,645.9,345.1,634,328.9z" />
+                                <path class="rayy" id="rayy1"
+                                    d="M768.1,603.8c5.8,3.3,7.9,10.9,4.5,16.8c-3.3,5.8-10.9,7.9-16.8,4.5l-41.5-24c-5.8-3.3-7.9-10.9-4.5-16.8
+                                                                                        c3.3-5.8,10.9-7.9,16.8-4.5L768.1,603.8z" />
+                                <path class="rayy" id="rayy2"
+                                    d="M651.8,729.2c3.4,5.9,1.4,13.4-4.5,16.8c-5.9,3.4-13.4,1.4-16.8-4.5l-24-41.5c-3.4-5.9-1.4-13.4,4.5-16.8
+                                                                                        c5.9-3.4,13.4-1.4,16.8,4.5L651.8,729.2z" />
+                                <path class="rayy" id="rayy3"
+                                    d="M488.4,779.6c0,6.9-5.6,12.4-12.4,12.4s-12.4-5.5-12.4-12.3v-48c0-6.9,5.6-12.4,12.4-12.4c6.9,0,12.4,5.6,12.4,12.4V779.6z" />
+                                <path class="rayy" id="rayy4"
+                                    d="M321.5,741.5c-3.3,5.8-10.9,7.9-16.8,4.5c-5.8-3.4-7.9-10.9-4.5-16.8l24-41.5c3.4-5.8,10.9-7.9,16.8-4.5
+                                                                                        c5.9,3.4,7.9,10.9,4.5,16.8L321.5,741.5z" />
+                                <path class="rayy" id="rayy5"
+                                    d="M196.1,625.2c-5.9,3.4-13.4,1.4-16.8-4.5c-3.3-5.9-1.3-13.4,4.6-16.8l41.5-24c5.9-3.4,13.4-1.4,16.8,4.5
+                                                                                        c3.4,5.9,1.4,13.4-4.5,16.8L196.1,625.2z" />
+                                <path
+                                    d="M347.4,395c-3.5,8.5-6.3,17.4-8.1,26.6c-1.7,8.8-2.7,18.1-2.7,27.8c0,6.8-5.6,12.4-12.4,12.4s-12.4-5.6-12.4-12.4
+                                                                                        c0-11,1.2-21.9,3.3-32.6c2.1-10.9,5.4-21.3,9.6-31.3c2.6-6.3,9.8-9.2,16.1-6.6S350,388.7,347.4,395L347.4,395z M360.1,527
+                                                                                        L360.1,527c5,7.4,10.7,14.4,17.1,20.8c6.4,6.4,13.4,12.2,20.7,17.1l0,0l0,0c7.5,5,15.4,9.3,23.6,12.8c8.4,3.6,17.3,6.4,26.5,8.2
+                                                                                        c8.8,1.7,18.1,2.7,27.8,2.7c6.9,0,12.4,5.5,12.4,12.4c0,6.9-5.6,12.4-12.4,12.4c-10.9,0-21.9-1.1-32.6-3.3
+                                                                                        c-10.8-2.1-21.3-5.4-31.2-9.6c-9.9-4.1-19.2-9.2-27.8-15l0,0c-8.9-6-17.1-12.8-24.4-20.1c-7.4-7.4-14.1-15.6-20.1-24.4l0,0l0,0
+                                                                                        c-5.8-8.7-10.9-18-15-27.8c-2.6-6.2,0.4-13.5,6.6-16.1s13.5,0.3,16.1,6.6C350.9,511.9,355.2,519.8,360.1,527z" />
+                            </g>
+                        </svg>
+                        <!---------------------------------------------------------------------->
+
+                        <script>
+                            var delay = 100;
+
+                            var tl = new TimelineLite;
+
+                            (function oli() {
+
+
+                                var light = window.localStorage.getItem("powerData1");
+                                var finalLight = Number(light);
+                                var lightPower2 = finalLight * 5.2;
+
+
+
+                                tl
+                                    //.staggerFromTo(".bottomm", 0, { alpha: 0 }, { alpha: 1, fill: "#000", delay: 1 }, 0.25)
+                                    //.staggerFromTo(".ray", 0, { alpha: 0 }, { alpha: 1, fill: "#000" }, 0.1, "-=1.25")
+                                    .staggerFromTo("#rectangle1", 0, { fill: "#000", alpha: 0, height: "1%" }, { fill: "#f5e317", alpha: 1, height: lightPower2, ease: Power3.easeInOut }, "-=1")
+
+
+
+                                window.setTimeout(oli, delay);
+                            })();
+                            tl
+                                .staggerFromTo(".bottomm", 0.5, { alpha: 0 }, { alpha: 1, fill: "#000", delay: 1 }, 0.25)
+                                .staggerFromTo(".rayy", 1, { alpha: 0 }, { alpha: 1, fill: "#000" }, 0.1, "-=1.25")
+
+                        </script>
+
+
+                        <meter min="0" max="100" low="25" high="100" optimum="70" value="0" id="somemeter2"></meter>
+                        <ul class="scale">
+                            <li class=""><span class="scale">0W</span></li>
+                            <li><span class="scale">50W</span></li>
+                            <li><span class="scale">100W</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="data-tile">
+                        <h5>Hot Coffee</h5>
+                        <div class="coffeeBlock" style="margin-top:-6%;">
+                            <div class="coffee" style="width: 40%; height: 25%;">
+                                <div id="vap" class="vapour">
+                                    <span style="--v:1;"></span>
+                                    <span style="--v:2;"></span>
+                                    <span style="--v:5;"></span>
+                                    <span style="--v:4;"></span>
+                                    <span style="--v:6;"></span>
+                                    <span style="--v:19;"></span>
+                                    <span style="--v:7;"></span>
+                                    <span style="--v:8;"></span>
+                                    <span style="--v:9;"></span>
+                                    <span style="--v:10;"></span>
+                                    <span style="--v:11;"></span>
+                                    <span style="--v:18;"></span>
+                                </div>
+                            </div>
+                            <div class="lid" style="width: 40%; height: 20%; margin:0 auto;"></div>
+                            <div class="cup" style="width: 40%; height: 50%;">
+                                <img src="starbucks.png" class="logo" alt="Hot Coffee" />
+                            </div>
+                            <div class="bottom" style="width: 30%; height: 10%;"></div>
+                        </div>
+
+                        <script>
+
+                            var coffee = window.localStorage.getItem("powerData1");
+                            var finalCoffee = Number(coffee);
+                            var delay = 100;
+
+                            (function loop() {
+
+
+                                if (finalCoffee <= 50) {
+                                    document.getElementById("vap").style.display = "none";
+                                }
+                                else if (finalCoffee > 50) {
+                                    document.getElementById("vap").style.display = "hidden";
+                                }
+
+                                window.setTimeout(loop, delay);
+                            })();
+
+                        </script>
+
+
+
+
+                        <meter min="0" max="1200" low="100" high="1100" optimum="800" value="0" id="somemeter3"></meter>
+                        <ul class="scale">
+                            <li class=""><span class="scale">0W</span></li>
+                            <li><span class="scale">600W</span></li>
+                            <li><span class="scale">1200W</span></li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="data-tiles cf">
+                    <!---------------------------ImageTree------------------------------------------->
+                    <img id="myTree" src="tree1.png" width="500" height="558" class="center">
+                    <!---------------------------------------------------------------------->
+                </div>
+                <h2 class="center">
+                    <center>With your help we can make a better world!!</center>
+                </h2>
+
+            </div>
+        </div>
     </section>
 
     <!-- About Section-->
@@ -408,15 +663,17 @@
         <div class="container"><small>Copyright &copy; Energy Bike Research Project 2021</small></div>
     </div>
 
-    <script type="module" src="index.js"></script>
+
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script type="text/javascript" src="other.js"></script>
 
 </body>
 
 <script type="module" src="index.js"></script>
-<script src="other.js"></script>
+
+
 
 </html>

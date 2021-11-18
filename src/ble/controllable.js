@@ -86,6 +86,8 @@ function onIndoorBikeData(value) {
     if(exists(value.power)   && models.sources.isSource('power', self.id))   xf.dispatch(`power`, value.power);
     if(exists(value.power2)   && models.sources.isSource('power2', self.id))   xf.dispatch(`power2`, value.power2);
     if(exists(value.cadence) && models.sources.isSource('cadence', self.id)) xf.dispatch(`cadence`, value.cadence);
+    if(exists(value.speed)   && models.sources.isSource('speed', self.id))   xf.dispatch(`speed`, value.speed);
+    if(exists(value.distance)   && models.sources.isSource('distance', self.id))   xf.dispatch(`distance`, value.distance);
     if(exists(value.status)  && models.sources.isSource('power', self.id)) {
         xf.dispatch(`${self.id}:fec:calibration`, value.status);
     }

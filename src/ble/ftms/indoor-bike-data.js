@@ -97,6 +97,25 @@ function getPower(dataview) {
     return dataview.getUint16(powerIndex(flags), true);
 }
 
+// Example:
+//    value: (0x) 44-00-18-01-14-00-06-00
+//           (10) 68-00-24-01-20-00-06-00
+//
+//    "Instantanious Speed: 2.8 km/h
+//     Instantanious Cadence: 10.0 per min
+//     Instantanious Power: 6 W" received
+//
+//              76543210
+// flags  68, 0b01000100
+//
+//                               5432109876543210
+// flags,          66, 0x42,   0b0000000001000100
+// inst speed,   3000, 0x0bb8,
+// inst cadence,  160, 0xa0,
+// inst power,    180, 0xb4,
+//
+// (0x) 42-00- b8-0b- a0-00 b4-00
+
 function indoorBikeDataDecoder(dataview) {
     const flags = dataview.getUint16(0, true);
     let data = {};

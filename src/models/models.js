@@ -1,10 +1,11 @@
 import { xf, exists, empty, equals,
          first, second, last } from '../functions.js';
 
-import { inRange, fixInRange} from '../utils.js';
+import { inRange, fixInRange, dateToDashString } from '../utils.js';
 
 import { LocalStorageItem } from '../storage/local-storage.js';
 import { idb } from '../storage/idb.js';
+import { uuid } from '../storage/uuid.js';
 
 
 class Model {
@@ -73,6 +74,18 @@ class Power2 extends Model {
     }
 }
 
+class HeartRate extends Model {
+    postInit(args) {
+        this.min = args.min || 0;
+        this.max = args.max || 255;
+    }
+    defaultValue() { return 0; }
+    defaultIsValid(value) {
+        const self = this;
+        return Number.isInteger(value) && inRange(self.min, self.max, value);
+    }
+}
+
 class Cadence extends Model {
     postInit(args) {
         this.min = args.min || 0;
@@ -124,7 +137,10 @@ class Sources extends Model {
             power: 'ble:controllable',
             power2: 'ble:controllable',
             cadence: 'ble:controllable',
+            speed: 'ble:controllable',
+            distance: 'ble:controllable',
             control: 'ble:controllable',
+            heartRate: 'ble:hrm'
         };
         return sources;
     }
@@ -201,7 +217,7 @@ class Mode extends Model {
 
 class Page extends Model {
     postInit(args) {
-        this.values = ['settings', 'home'];
+        this.values = ['settings', 'home', 'workouts'];
     }
     defaultValue() { return 'home'; }
     defaultIsValid(value) { return this.values.includes(value); }
@@ -259,6 +275,114 @@ class FTP extends Model {
     }
 }
 
+class Weight extends Model {
+    postInit(args) {
+        const self = this;
+        const storageModel = {
+            key: self.prop,
+            fallback: self.defaultValue(),
+            parse: parseInt,
+        };
+        self.min = args.min || 0;
+        self.max = args.max || 500;
+        self.storage = new args.storage(storageModel);
+    }
+    defaultValue() { return 75; }
+    defaultIsValid(value) {
+        const self = this;
+        return Number.isInteger(value) && inRange(self.min, self.max, value);
+    }
+}
+class Theme extends Model {
+    postInit(args) {
+        const self = this;
+        const storageModel = {
+            key: self.prop,
+            fallback: self.defaultValue(),
+        };
+        self.storage = new args.storage(storageModel);
+        self.values = ['dark', 'light'];
+    }
+    defaultValue() { return 'dark'; }
+    defaultIsValid(value) { return this.values.includes(value); }
+    switch(theme) {
+        const self = this;
+        if(theme === first(self.values)) return second(self.values);
+        if(theme === second(self.values)) return first(self.values);
+        self.onInvalid(theme);
+        return self.default;
+    }
+}
+class Measurement extends Model {
+    postInit(args) {
+        const self = this;
+        const storageModel = {
+            key: self.prop,
+            fallback: self.defaultValue(),
+        };
+        self.storage = new args.storage(storageModel);
+        self.values = ['metric', 'imperial'];
+    }
+    defaultValue() { return 'metric'; }
+    defaultIsValid(value) { return this.values.includes(value); }
+    switch(theme) {
+        const self = this;
+        if(theme === first(self.values)) return second(self.values);
+        if(theme === second(self.values)) return first(self.values);
+        self.onInvalid(theme);
+        return self.default;
+    }
+}
+
+class Workout extends Model {
+    postInit(args) {
+        const self = this;
+    }
+    defaultIsValid(value) {
+        return exists(value);
+    }
+    restore(db) {
+        return first(db.workouts);
+    }
+    save(db) {
+        const self = this;
+        self.download(self.encode(db));
+    }
+}
+
+class Workouts extends Model {
+    init(args) {
+        const self = this;
+        self.workoutModel = args.workoutModel;
+    }
+    postInit(args) {
+        const self = this;
+        console.log(self.defaultValue());
+    }
+    defaultIsValid(value) {
+        const self = this;
+        return exists(value);
+    }
+    restore() {
+        const self = this;
+        return self.default;
+    }
+    get(workouts, id) {
+        for(let workout of workouts) {
+            if(equals(workout.id, id)) {
+                return workout;
+            }
+        }
+        console.error(`tring to get a missing workout: ${id}`, workouts);
+        return first(workouts);
+    }
+    add(workouts, workout) {
+        const self = this;
+        workouts.push(Object.assign(workout, {id: uuid()}));
+        return workouts;
+    }
+}
+
 function Session(args = {}) {
     let name = 'session';
 
@@ -302,6 +426,7 @@ function Session(args = {}) {
             stepDuration: db.stepDuration,
             lapStartTime: db.lapStartTime,
             watchStatus: db.watchStatus,
+            workoutStatus: db.workoutStatus,
 
             // Recording
             records: db.records,
@@ -309,6 +434,7 @@ function Session(args = {}) {
             lap: db.lap,
 
             // Workouts
+            workout: db.workout,
             mode: db.mode,
             page: db.page,
 
@@ -335,7 +461,10 @@ function Session(args = {}) {
 
 const power = new Power({prop: 'power'});
 const power2 = new Power2({prop: 'power2'});
+const heartRate = new HeartRate({prop: 'heartRate'});
 const cadence = new Cadence({prop: 'cadence'});
+const speed = new Speed({prop: 'speed'});
+const distance = new Distance({prop: 'distance'});
 const sources = new Sources({prop: 'sources'});
 
 const powerTarget = new PowerTarget({prop: 'powerTarget'});
@@ -345,13 +474,21 @@ const mode = new Mode({prop: 'mode'});
 const page = new Page({prop: 'page'});
 
 const ftp = new FTP({prop: 'ftp', storage: LocalStorageItem});
+const weight = new Weight({prop: 'weight', storage: LocalStorageItem});
+const theme = new Theme({prop: 'theme', storage: LocalStorageItem});
+const measurement = new Measurement({prop: 'measurement', storage: LocalStorageItem});
 
+const workout = new Workout({prop: 'workout'});
+const workouts = new Workouts({prop: 'workouts', workoutModel: workout});
 
 const session = Session();
 
 let models = { power,
                power2,
+               heartRate,
                cadence,
+               speed,
+               distance,
                sources,
                powerTarget,
                resistanceTarget,
@@ -359,6 +496,11 @@ let models = { power,
                mode,
                page,
                ftp,
+               weight,
+               theme,
+               measurement,
+               workout,
+               workouts,
                session,
              };
 

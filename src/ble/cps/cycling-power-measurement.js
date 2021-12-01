@@ -224,3 +224,7 @@ function cyclingPowerMeasurementDecoder(dataview) {
 export {
     cyclingPowerMeasurementDecoder,
 };
+
+
+var powerData =0;
+window.localStorage.setItem("powerData1", powerData);

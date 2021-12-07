@@ -56,7 +56,7 @@
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
             <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0">Project</h1>
+            <h1 class="masthead-heading text-uppercase mb-0">Project Aim</h1>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -64,7 +64,13 @@
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Masthead Subheading-->
-            <p class="masthead-subheading font-weight-light mb-0">Info</p>
+            <p class="masthead-subheading font-weight-light mb-0">The project aims to display the energy consumption of
+                the various equipment commonly used in the house. The goal is to highlight how much energy is required
+                to power these essential items.</p>
+            <p class="masthead-subheading font-weight-light mb-0">This interactive exhibit aims to spark interest in the
+                importance of reducing greenhouse gas emissions and improving the environment's conservation. It will
+                also teach users about the various building systems and how these contribute to the carbon footprint.
+            </p>
         </div>
     </header>
     <!-- BikeInfo Section-->
@@ -251,8 +257,8 @@
                         <!--Speedometer-->
 
 
-                        <div id="speedtest">
-                            <svg id="gauge" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        <div id="speedtest2">
+                            <svg id="gauge2" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
                                 style="enable-background:new 0 0 100 100;" xml:space="preserve">
                                 <path style="fill: #e31212;"
@@ -312,8 +318,64 @@
                                 <path style="fill: #0adc1e; display: none;"
                                     d="M89.9,80.1c0.5-0.7,1-1.3,1.4-1.9l-12-8.2c-0.3,0.4-0.6,0.9-0.9,1.3L89.9,80.1z" />
                             </svg>
-                            <div id="gauge-label">0</div>
+                            <div id="gauge-label2">0</div>
                         </div>
+
+
+                        <!---------------------------------------------------------------------->
+
+                        <script>
+                            var delay2 = 10000, value1 = 0, valueStore2 = 0, tick2 = 1, tickStore2 = 1, tickDiff2 = 0, tickDiffValue2 = 0;
+                            function valBetween(v, min, max) {
+                                return (Math.min(max, Math.max(min, v)));
+                            }
+
+                            (function loop() {
+                                var power1 = window.localStorage.getItem("powerData1");
+                                var finalPower = Number(power1);
+                                value1 = finalPower + value1;
+                                tick2 = valBetween(Math.ceil((value1 / 5000) * 28), 1, 28);
+                                tickDiff2 = Math.abs(tick2 - tickStore2);
+                                tickDiffValue2 = Math.abs(value1 - valueStore2) / tickDiff2;
+                                console.log("tickDiff: " + tickDiffValue2 + " * " + tickDiff2 + " = " + (tickDiffValue2 * tickDiff2));
+                                var counter = 0, valueStoreTemp = valueStore2, tickStoreTemp = tickStore2;
+                                if (value1 > valueStore2) {
+                                    for (i = tickStoreTemp; i <= tick2; i++) {
+                                        (function (i) {
+                                            setTimeout(function () {
+
+                                                $('#gauge2 path:nth-child(' + i + ')').show();
+                                                $('#gauge-label2')
+                                                    .css('color', $('#gauge2 path:nth-child(' + i + ')')[0].style.fill)
+                                                    .text(Math.ceil(valueStoreTemp + (tickDiffValue2 * Math.abs(tickStoreTemp - i))));
+                                                if (i == tick2) { $('#gauge-label2').text(value1); }
+                                            }, 50 * counter);
+                                            counter++;
+                                        }(i));
+                                    }
+                                } else if (value1 < valueStore2) {
+                                    for (i = tickStoreTemp; i >= tick2; i--) {
+                                        (function (i) {
+                                            setTimeout(function () {
+                                                $('body').css('background-image', 'linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(' + $('#gauge2 path:nth-child(' + i + ')')[0].style.fill + ', ' + $('#gauge2 path:nth-child(' + i + ')')[0].style.fill + ' 50%, #fff 50%)');
+                                                $('#gauge2').css('box-shadow', '0 0 32px rgba(21, 55, 172, 0.25), inset 0 -192px 192px -240px ' + $('#gauge2 path:nth-child(' + i + ')')[0].style.fill + ', inset 0 0 2px -1px ' + $('#gauge2 path:nth-child(' + i + ')')[0].style.fill);
+                                                $('#gauge2 path:nth-child(' + i + ')').hide();
+                                                $('#gauge-label2')
+                                                    .css('color', $('#gauge2 path:nth-child(' + i + ')')[0].style.fill)
+                                                    .text(Math.floor(valueStoreTemp - (tickDiffValue2 * Math.abs(tickStoreTemp - i))));
+                                                if (i == tick2) { $('#gauge-label2').text(value1); }
+                                            }, 50 * counter);
+                                            counter++;
+                                        }(i));
+                                    }
+                                }
+                                valueStore2 = value1;
+                                tickStore2 = tick2;
+                                window.setTimeout(loop, delay2);
+                            })();
+
+
+                        </script>
 
 
                     </div>
@@ -602,11 +664,11 @@
 
 
 
-                        <meter min="0" max="1200" low="100" high="1100" optimum="800" value="0" id="somemeter3"></meter>
+                        <meter min="0" max="300" low="40" high="300" optimum="250" value="0" id="somemeter3"></meter>
                         <ul class="scale">
                             <li class=""><span class="scale">0W</span></li>
+                            <li><span class="scale">150W</span></li>
                             <li><span class="scale">300W</span></li>
-                            <li><span class="scale">600W</span></li>
                         </ul>
                     </div>
                 </div>
@@ -618,24 +680,24 @@
 
                         <main style="margin-top:5%;">
                             <ul role="presentation">
-                              <li class="fridge">
-                                <div class="freezer">
-                                  <div class="handle"></div>
-                                </div>
-                                <div class="body">
-                                  <div class="handle"></div>
-                                </div>
-                              </li>
+                                <li class="fridge">
+                                    <div class="freezer">
+                                        <div class="handle"></div>
+                                    </div>
+                                    <div class="body">
+                                        <div class="handle"></div>
+                                    </div>
+                                </li>
                             </ul>
-                          </main>
+                        </main>
 
-                          <meter min="0" max="1200" low="100" high="1100" optimum="800" value="0" id="somemeter3"></meter>
-                          <ul class="scale">
-                              <li class=""><span class="scale">0W</span></li>
-                              <li><span class="scale">150W</span></li>
-                              <li><span class="scale">300W</span></li>
-                          </ul>
-       
+                        <meter min="0" max="150" low="40" high="150" optimum="120" value="0" id="somemeter4"></meter>
+                        <ul class="scale">
+                            <li class=""><span class="scale">0W</span></li>
+                            <li><span class="scale">75W</span></li>
+                            <li><span class="scale">150W</span></li>
+                        </ul>
+
                     </div>
 
                 </div>
@@ -681,28 +743,30 @@
                             </svg>
                         </div>
                         <div class="info-cell">
-                            <h3 class="">Name</h3>
-                            <effect-display id="controllable-name" class="info-cell-value"
-                                effect="ble:power-meter:name">--
-                            </effect-display>
+                            <h7>Bike Number</h7>
+                            <h3>
+                                <effect-display id="controllable-name" class="info-cell-value"
+                                    effect="ble:power-meter:name">--
+                                </effect-display>
+                            </h3>
                         </div>
                         <div class="info-cell">
                             <h7>Power (Watts)</h7>
                             <h3>
-                                <p id="Power1">--</p>
+                                <p>--</p>
                             </h3>
                         </div>
                         <div class="info-cell">
                             <h7>Cadence (RPM)</h7>
                             <h3>
-                                <p id="Cadence1">--</p>
+                                <p>--</p>
                             </h3>
 
                         </div>
                         <div class="info-cell">
                             <h7>Speed</h7>
                             <h3>
-                                <p id="Speed1">--</p>
+                                <p>--</p>
                             </h3>
                         </div>
 
@@ -726,13 +790,7 @@
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Around the Web</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                    <h4 class="text-uppercase mb-4">Msc. Computing Science</h4>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
@@ -754,7 +812,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    <script type="text/javascript" src="other.js"></script>
 
 </body>
 

@@ -178,6 +178,9 @@ function cyclingPowerMeasurementDecoder(dataview) {
     var meter3 = document.getElementById('somemeter3');
     meter3.value = getPower(dataview);
 
+    var meter4 = document.getElementById('somemeter4');
+    meter4.value = getPower(dataview);
+
 
 
 

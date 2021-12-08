@@ -157,9 +157,6 @@ function cyclingPowerMeasurementDecoder(dataview) {
     document.getElementById('Cadence1').innerHTML = cadence.toFixed(2);
 
 
-
-    //Speed
-
     var speed = getPower(dataview) * 0.3953488372
     document.getElementById('Speed1').innerHTML = speed.toFixed(2);
 
@@ -182,9 +179,6 @@ function cyclingPowerMeasurementDecoder(dataview) {
     meter4.value = getPower(dataview);
 
 
-
-
-    //Image tree
 
     var tree;
     if (getPower(dataview) == 0) {
